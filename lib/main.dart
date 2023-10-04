@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
-import 'package:flutter_to_do_list/screens/home_page.dart';
-import 'package:flutter_to_do_list/theme/colors/light_colors.dart';
+import 'package:flutter_to_do_list/app/routes/app_pages.dart';
+import 'package:flutter_to_do_list/app/theme/colors/light_colors.dart';
+
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -28,7 +30,8 @@ class MyApp extends StatelessWidget {
             displayColor: LightColors.kDarkBlue,
             fontFamily: 'Poppins'),
       ),
-      home: const HomePage(),
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
     );
   }
