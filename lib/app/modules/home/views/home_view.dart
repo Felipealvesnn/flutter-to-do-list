@@ -39,10 +39,33 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: const Drawer(
-        child: Text('Hello'),
-      ),
       backgroundColor: LightColors.kLightYellow,
+      drawer: Drawer(
+        // Conteúdo do Drawer aqui
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Header do Drawer'),
+            ),
+            ListTile(
+              title: const Text('Item 1'),
+              onTap: () {
+                // Lógica quando o Item 1 do Drawer for pressionado
+              },
+            ),
+            ListTile(
+              title: const Text('Item 2'),
+              onTap: () {
+                // Lógica quando o Item 2 do Drawer for pressionado
+              },
+            ),
+          ],
+        ),
+      ),
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -54,12 +77,18 @@ class HomeView extends GetView<HomeController> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Icon(Icons.menu,
-                              color: LightColors.kDarkBlue, size: 30.0),
-                          Icon(Icons.search,
+                          IconButton(
+                            onPressed: () {
+                              Scaffold.of(context)
+                                  .openDrawer(); // Abre o Drawer
+                            },
+                            icon: const Icon(Icons.menu, size: 25.0),
+                            color: Colors.blue, // Use a cor desejada
+                          ),
+                          const Icon(Icons.search,
                               color: LightColors.kDarkBlue, size: 25.0),
                         ],
                       ),
@@ -223,6 +252,27 @@ class HomeView extends GetView<HomeController> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: NavigationBar(
+        onDestinationSelected: (int index) {},
+        indicatorColor: Colors.amber[800],
+        //selectedIndex: currentPageIndex,
+        destinations: const <Widget>[
+          NavigationDestination(
+            selectedIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.business),
+            label: 'Business',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.school),
+            icon: Icon(Icons.school_outlined),
+            label: 'School',
+          ),
+        ],
       ),
     );
   }
