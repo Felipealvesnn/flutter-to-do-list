@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 
 class TaskContainer extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final Color boxColor;
+  final String? title;
+  final String? subtitle;
+  final Color? boxColor;
   
   TaskContainer({
     this.title, this.subtitle, this.boxColor,
@@ -20,7 +20,7 @@ class TaskContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            title,
+            title!,
             style: TextStyle(
               fontSize: 16.0,
               fontWeight: FontWeight.w700,
@@ -30,7 +30,7 @@ class TaskContainer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 10.0),
             child: Text(
-              subtitle,
+              subtitle!,
               style: TextStyle(
                 fontSize: 14.0,
                 color: Colors.black54,

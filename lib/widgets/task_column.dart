@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class TaskColumn extends StatelessWidget {
-  final IconData icon;
-  final Color iconBackgroundColor;
-  final String title;
-  final String subtitle;
+  final IconData? icon;
+  final Color? iconBackgroundColor;
+  final String? title;
+  final String? subtitle;
   TaskColumn({
     this.icon,
     this.iconBackgroundColor,
@@ -30,14 +30,14 @@ class TaskColumn extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              title,
+              title!,
               style: TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.w700,
               ),
             ),
             Text(
-              subtitle,
+              subtitle!,
               style: TextStyle(
                   fontSize: 14.0,
                   fontWeight: FontWeight.w500,

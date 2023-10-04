@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class MyTextField extends StatelessWidget {
-  final String label;
-  final int maxLines;
-  final int minLines;
-  final Icon icon;
-  MyTextField({this.label, this.maxLines = 1, this.minLines = 1, this.icon});
+  final String? label;
+  final int? maxLines;
+  final int? minLines;
+  final Icon? icon;
+
+  const MyTextField({Key? key,  this.label,  this.maxLines,  this.minLines, 
+   this.icon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

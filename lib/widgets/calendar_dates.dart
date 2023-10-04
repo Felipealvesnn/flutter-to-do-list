@@ -7,8 +7,9 @@ class CalendarDates extends StatelessWidget {
   final Color dayColor;
   final Color dateColor;
 
-  CalendarDates({this.day, this.date, this.dayColor, this.dateColor});
+  const CalendarDates({Key? key, required this.day, required this.date, required this.dayColor, required this.dateColor}) : super(key: key);
 
+ 
   @override
   Widget build(BuildContext context) {
     return Padding(

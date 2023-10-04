@@ -50,7 +50,7 @@ class CalendarPage extends StatelessWidget {
                         color: LightColors.kGreen,
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      child: FlatButton(
+                      child: OutlinedButton(
                         onPressed: () {
                           Navigator.push(
                             context,
