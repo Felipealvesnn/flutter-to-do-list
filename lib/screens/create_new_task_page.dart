@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task_planner_app/theme/colors/light_colors.dart';
-import 'package:flutter_task_planner_app/widgets/top_container.dart';
-import 'package:flutter_task_planner_app/widgets/back_button.dart';
-import 'package:flutter_task_planner_app/widgets/my_text_field.dart';
-import 'package:flutter_task_planner_app/screens/home_page.dart';
+import 'package:flutter_to_do_list/screens/home_page.dart';
+import 'package:flutter_to_do_list/theme/colors/light_colors.dart';
+import 'package:flutter_to_do_list/widgets/back_button.dart';
+import 'package:flutter_to_do_list/widgets/my_text_field.dart';
+import 'package:flutter_to_do_list/widgets/top_container.dart';
 
 class CreateNewTaskPage extends StatelessWidget {
+  const CreateNewTaskPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    var downwardIcon = Icon(
+    var downwardIcon = const Icon(
       Icons.keyboard_arrow_down,
       color: Colors.black54,
     );
@@ -18,15 +20,15 @@ class CreateNewTaskPage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             TopContainer(
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 40),
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
               width: width,
               child: Column(
                 children: <Widget>[
                   MyBackButton(),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Text(
@@ -36,12 +38,12 @@ class CreateNewTaskPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Container(
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      MyTextField(label: 'Title'),
+                      const MyTextField(label: 'Title'),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -62,7 +64,7 @@ class CreateNewTaskPage extends StatelessWidget {
             ),
             Expanded(
                 child: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: <Widget>[
                   Row(
@@ -73,7 +75,7 @@ class CreateNewTaskPage extends StatelessWidget {
                         label: 'Start Time',
                         icon: downwardIcon,
                       )),
-                      SizedBox(width: 40),
+                      const SizedBox(width: 40),
                       Expanded(
                         child: MyTextField(
                           label: 'End Time',
@@ -82,16 +84,16 @@ class CreateNewTaskPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
-                  MyTextField(
+                  const SizedBox(height: 20),
+                  const MyTextField(
                     label: 'Description',
                     minLines: 3,
                     maxLines: 3,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Container(
                     alignment: Alignment.topLeft,
-                    child: Column(
+                    child: const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
@@ -135,26 +137,26 @@ class CreateNewTaskPage extends StatelessWidget {
                 ],
               ),
             )),
-            Container(
+            SizedBox(
               height: 80,
               width: width,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Container(
-                    child: Text(
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+                    width: width - 40,
+                    decoration: BoxDecoration(
+                      color: LightColors.kBlue,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: const Text(
                       'Create Task',
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w700,
                           fontSize: 18),
-                    ),
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
-                    width: width - 40,
-                    decoration: BoxDecoration(
-                      color: LightColors.kBlue,
-                      borderRadius: BorderRadius.circular(30),
                     ),
                   ),
                 ],

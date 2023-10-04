@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task_planner_app/dates_list.dart';
-import 'package:flutter_task_planner_app/theme/colors/light_colors.dart';
-import 'package:flutter_task_planner_app/widgets/calendar_dates.dart';
-import 'package:flutter_task_planner_app/widgets/task_container.dart';
-import 'package:flutter_task_planner_app/screens/create_new_task_page.dart';
-import 'package:flutter_task_planner_app/widgets/back_button.dart';
+import 'package:flutter_to_do_list/dates_list.dart';
+import 'package:flutter_to_do_list/screens/create_new_task_page.dart';
+import 'package:flutter_to_do_list/theme/colors/light_colors.dart';
+import 'package:flutter_to_do_list/widgets/back_button.dart';
+import 'package:flutter_to_do_list/widgets/calendar_dates.dart';
+import 'package:flutter_to_do_list/widgets/task_container.dart';
+
 
 class CalendarPage extends StatelessWidget {
+  const CalendarPage({super.key});
+
   Widget _dashedText() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 15),
-      child: Text(
+      padding: const EdgeInsets.symmetric(vertical: 15),
+      child: const Text(
         '------------------------------------------',
         maxLines: 1,
         style:
@@ -34,11 +37,11 @@ class CalendarPage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               MyBackButton(),
-              SizedBox(height: 30.0),
+              const SizedBox(height: 30.0),
               Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(
+                    const Text(
                       'Today',
                       style: TextStyle(
                           fontSize: 30.0, fontWeight: FontWeight.w700),
@@ -59,7 +62,7 @@ class CalendarPage extends StatelessWidget {
                             ),
                           );
                         },
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'Add task',
                             style: TextStyle(
@@ -71,8 +74,8 @@ class CalendarPage extends StatelessWidget {
                       ),
                     ),
                   ]),
-              SizedBox(height: 10),
-              Row(
+              const SizedBox(height: 10),
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Text(
@@ -85,16 +88,16 @@ class CalendarPage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 30),
-              Align(
+              const SizedBox(height: 30),
+              const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'April, 2020',
                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
                 ),
               ),
-              SizedBox(height: 20.0),
-              Container(
+              const SizedBox(height: 20.0),
+              SizedBox(
                 height: 58.0,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -113,7 +116,7 @@ class CalendarPage extends StatelessWidget {
               Expanded(
                 child: SingleChildScrollView(
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 20.0),
+                    padding: const EdgeInsets.symmetric(vertical: 20.0),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -123,7 +126,7 @@ class CalendarPage extends StatelessWidget {
                           child: ListView.builder(
                             itemCount: time.length,
                             shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (BuildContext context, int index) =>
                                 Padding(
                               padding:
@@ -132,7 +135,7 @@ class CalendarPage extends StatelessWidget {
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                   '${time[index]} ${time[index] > 8 ? 'PM' : 'AM'}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16.0,
                                     color: Colors.black54,
                                   ),
@@ -141,14 +144,14 @@ class CalendarPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 20,
                         ),
                         Expanded(
                           flex: 5,
                           child: ListView(
                             shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             children: <Widget>[
                               _dashedText(),
                               TaskContainer(

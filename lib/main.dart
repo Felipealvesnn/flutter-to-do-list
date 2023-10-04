@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task_planner_app/screens/home_page.dart';
-import 'package:flutter_task_planner_app/theme/colors/light_colors.dart';
+
 import 'package:flutter/services.dart';
+import 'package:flutter_to_do_list/screens/home_page.dart';
+import 'package:flutter_to_do_list/theme/colors/light_colors.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -21,10 +22,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         textTheme: Theme.of(context).textTheme.apply(
-              bodyColor: LightColors.kDarkBlue,
-              displayColor: LightColors.kDarkBlue,
-              fontFamily: 'Poppins'
-            ),
+            bodyColor: LightColors.kDarkBlue,
+            displayColor: LightColors.kDarkBlue,
+            fontFamily: 'Poppins'),
       ),
       home: HomePage(),
       debugShowCheckedModeBanner: false,
