@@ -12,7 +12,7 @@ class TopContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: padding ?? const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: padding ?? const EdgeInsets.symmetric(horizontal: 20.0, ),
       decoration: const BoxDecoration(
           color: LightColors.kDarkYellow,
           borderRadius: BorderRadius.only(

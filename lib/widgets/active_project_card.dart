@@ -7,7 +7,8 @@ class ActiveProjectsCard extends StatelessWidget {
   final String? title;
   final String? subtitle;
 
-  ActiveProjectsCard({
+  const ActiveProjectsCard({
+    super.key,
     this.cardColor,
     this.loadingPercent,
     this.title,
@@ -19,9 +20,8 @@ class ActiveProjectsCard extends StatelessWidget {
     return Expanded(
       flex: 1,
       child: Container(
-        
-        margin: EdgeInsets.symmetric(vertical: 10.0),
-        padding: EdgeInsets.all(15.0),
+        margin: const EdgeInsets.symmetric(vertical: 10.0),
+        padding: const EdgeInsets.all(15.0),
         height: 200,
         decoration: BoxDecoration(
           color: cardColor,
@@ -32,42 +32,60 @@ class ActiveProjectsCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
               child: CircularPercentIndicator(
                 animation: true,
-                radius: 75.0,
+                radius: 60,
                 percent: loadingPercent!,
                 lineWidth: 5.0,
                 circularStrokeCap: CircularStrokeCap.round,
                 backgroundColor: Colors.white10,
                 progressColor: Colors.white,
                 center: Text(
-                  '${(loadingPercent!*100).round()}%',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w700, color: Colors.white),
+                  '${(loadingPercent! * 100).round()}%',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  title!,
-                  style: TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
+            SizedBox(
+              height: 10,
+            ),
+            
+            Expanded(
+              // Adicione um Expanded
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    width: 150, // Defina um maxWidth adequado
+                    child: Text(
+                      title!,
+                      style: const TextStyle(
+                        fontSize: 14.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      overflow: TextOverflow
+                          .ellipsis, // Adiciona reticências no final do texto
+                    ),
                   ),
-                ),
-                Text(
-                  subtitle!,
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    color: Colors.white54,
-                    fontWeight: FontWeight.w400,
+                  SizedBox(
+                    width: 150,
+                    child: Text(
+                      subtitle!,
+                      style: const TextStyle(
+                        fontSize: 12.0,
+                        color: Colors.white54,
+                        fontWeight: FontWeight.w400,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),

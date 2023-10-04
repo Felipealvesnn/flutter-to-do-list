@@ -5,15 +5,17 @@ import 'package:flutter_to_do_list/screens/home_page.dart';
 import 'package:flutter_to_do_list/theme/colors/light_colors.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     systemNavigationBarColor: LightColors.kLightYellow, // navigation bar color
     statusBarColor: Color(0xffffb969), // status bar color
   ));
 
-  return runApp(MyApp());
+  return runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
             displayColor: LightColors.kDarkBlue,
             fontFamily: 'Poppins'),
       ),
-      home: HomePage(),
+      home: const HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }

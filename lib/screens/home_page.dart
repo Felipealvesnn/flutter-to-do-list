@@ -37,10 +37,14 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      drawer: const Drawer(
+        child: Text('Hello'),
+      ),
       backgroundColor: LightColors.kLightYellow,
       body: SafeArea(
         child: Column(
           children: <Widget>[
+            //container do top
             TopContainer(
               height: 200,
               width: width,
@@ -64,7 +68,7 @@ class HomePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           CircularPercentIndicator(
-                            radius: 90.0,
+                            radius: 60.0,
                             lineWidth: 5.0,
                             animation: true,
                             percent: 0.75,
@@ -79,11 +83,11 @@ class HomePage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Container(
-                                child: const Text(
+                          const Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
                                   'Sourav Suman',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
@@ -92,9 +96,7 @@ class HomePage extends StatelessWidget {
                                     fontWeight: FontWeight.w800,
                                   ),
                                 ),
-                              ),
-                              Container(
-                                child: const Text(
+                                Text(
                                   'App Developer',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
@@ -103,8 +105,8 @@ class HomePage extends StatelessWidget {
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           )
                         ],
                       ),
@@ -173,7 +175,7 @@ class HomePage extends StatelessWidget {
                         children: <Widget>[
                           subheading('Active Projects'),
                           const SizedBox(height: 5.0),
-                          Row(
+                          const Row(
                             children: <Widget>[
                               ActiveProjectsCard(
                                 cardColor: LightColors.kGreen,
@@ -181,7 +183,7 @@ class HomePage extends StatelessWidget {
                                 title: 'Medical App',
                                 subtitle: '9 hours progress',
                               ),
-                              const SizedBox(width: 20.0),
+                              SizedBox(width: 20.0),
                               ActiveProjectsCard(
                                 cardColor: LightColors.kRed,
                                 loadingPercent: 0.6,
@@ -190,7 +192,7 @@ class HomePage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Row(
+                          const Row(
                             children: <Widget>[
                               ActiveProjectsCard(
                                 cardColor: LightColors.kDarkYellow,
@@ -198,7 +200,7 @@ class HomePage extends StatelessWidget {
                                 title: 'Sports App',
                                 subtitle: '5 hours progress',
                               ),
-                              const SizedBox(width: 20.0),
+                              SizedBox(width: 20.0),
                               ActiveProjectsCard(
                                 cardColor: LightColors.kBlue,
                                 loadingPercent: 0.9,
