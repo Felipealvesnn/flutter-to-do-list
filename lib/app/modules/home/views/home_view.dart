@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_to_do_list/app/modules/CalendarPage/views/calendar_page_view.dart';
+import 'package:flutter_to_do_list/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter_to_do_list/app/theme/colors/light_colors.dart';
-import 'package:flutter_to_do_list/screens/calendar_page.dart';
-import 'package:flutter_to_do_list/theme/colors/light_colors.dart';
-import 'package:flutter_to_do_list/widgets/active_project_card.dart';
-import 'package:flutter_to_do_list/widgets/task_column.dart';
-import 'package:flutter_to_do_list/widgets/top_container.dart';
+import 'package:flutter_to_do_list/app/widgets/active_project_card.dart';
+import 'package:flutter_to_do_list/app/widgets/task_column.dart';
+import 'package:flutter_to_do_list/app/widgets/top_container.dart';
+
+import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 
@@ -134,7 +136,7 @@ class HomeView extends GetView<HomeController> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const CalendarPage()),
+                                        builder: (context) => const CalendarPageView()),
                                   );
                                 },
                                 child: calendarIcon(),
@@ -142,7 +144,7 @@ class HomeView extends GetView<HomeController> {
                             ],
                           ),
                           const SizedBox(height: 15.0),
-                          TaskColumn(
+                          const TaskColumn(
                             icon: Icons.alarm,
                             iconBackgroundColor: LightColors.kRed,
                             title: 'To Do',
@@ -151,14 +153,14 @@ class HomeView extends GetView<HomeController> {
                           const SizedBox(
                             height: 15.0,
                           ),
-                          TaskColumn(
+                          const TaskColumn(
                             icon: Icons.blur_circular,
                             iconBackgroundColor: LightColors.kDarkYellow,
                             title: 'In Progress',
                             subtitle: '1 tasks now. 1 started',
                           ),
                           const SizedBox(height: 15.0),
-                          TaskColumn(
+                          const TaskColumn(
                             icon: Icons.check_circle_outline,
                             iconBackgroundColor: LightColors.kBlue,
                             title: 'Done',
