@@ -1,7 +1,7 @@
 
 
 abstract class NomeBanco {
-  static const String talks = 'Talks';
+  static const String talks = 'Tarefas';
   static const String category = 'Category';
 }
 
@@ -18,5 +18,6 @@ final talksColumns = [
   'date TEXT',
   'StartTime TEXT',
   'EndTime TEXT',
-  'categoriaId INTEGER',
+  'categoriaId INTEGER', // Chave estrangeira
 ];
+

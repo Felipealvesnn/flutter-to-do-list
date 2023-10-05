@@ -19,15 +19,15 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(),
+      page: () =>  HomeView(),
       binding: HomeBinding(),
-      children: [
-        GetPage(
-          name: _Paths.HOME,
-          page: () => const HomeView(),
-          binding: HomeBinding(),
-        ),
-      ],
+      // children: [
+      //   GetPage(
+      //     name: _Paths.HOME,
+      //     page: () =>  HomeView(),
+      //     binding: HomeBinding(),
+      //   ),
+      // ],
     ),
     GetPage(
       name: _Paths.CREATE_NEW_TASK_PAGE,
@@ -35,9 +35,11 @@ class AppPages {
       binding: CreateNewTaskPageBinding(),
     ),
     GetPage(
-      name: _Paths.CALENDAR_PAGE,
-      page: () =>  CalendarPageView(),
-      binding: CalendarPageBinding(),
-    ),
+        name: _Paths.CALENDAR_PAGE,
+        page: () =>  CalendarPageView(),
+        binding: 
+          CalendarPageBinding(),
+         
+        ),
   ];
 }

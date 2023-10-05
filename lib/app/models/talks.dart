@@ -3,36 +3,36 @@ import 'dart:convert';
 import 'dart:ffi';
 
 class TalksModel {
-  Int id;
-  String title;
-  String description;
-  String date;
-  String StartTime;
-  String EndTime;
-  int categoriaId;
+  int? id;
+  String? title;
+  String? description;
+  String? date;
+  String? StartTime;
+  String? EndTime;
+  int? categoriaId;
   
   TalksModel({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.date,
-    required this.StartTime,
-    required this.EndTime,
-    required this.categoriaId,
+     this.id,
+     this.title,
+     this.description,
+     this.date,
+     this.StartTime,
+     this.EndTime,
+     this.categoriaId,
   });
   
 
   
 
-  Map<String, dynamic> toMap() {
+  Map<String, Object> toMap() {
     return {
-      'id': id,
-      'title': title,
-      'description': description,
-      'date': date,
-      'StartTime': StartTime,
-      'EndTime': EndTime,
-      'categoriaId': categoriaId,
+      'id': id!,
+      'title': title!,
+      'description': description!,
+      'date': date!,
+      'StartTime': StartTime!,
+      'EndTime': EndTime!,
+      'categoriaId': categoriaId!,
     };
   }
 

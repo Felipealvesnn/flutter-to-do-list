@@ -6,13 +6,13 @@ import 'package:flutter_to_do_list/app/theme/colors/light_colors.dart';
 import 'package:flutter_to_do_list/app/widgets/back_button.dart';
 import 'package:flutter_to_do_list/app/widgets/calendar_dates.dart';
 import 'package:flutter_to_do_list/app/widgets/task_container.dart';
-import 'package:flutter_to_do_list/dates_list.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class CalendarPageView extends GetView<CalendarPageController> {
-  const CalendarPageView({super.key});
+  CalendarPageView({super.key});
+  final controller = Get.find<CalendarPageController>();
 
   // Obtenha a data atual
 
@@ -31,7 +31,7 @@ class CalendarPageView extends GetView<CalendarPageController> {
   @override
   Widget build(BuildContext context) {
     final String data = UtilsServices.formatDateTimeMesAno(DateTime.now());
-    final ultils  = UtilsServices.getHorarios();
+    final ultils = UtilsServices.getHorarios();
     return Scaffold(
       backgroundColor: LightColors.kLightYellow,
       body: SingleChildScrollView(
@@ -101,7 +101,8 @@ class CalendarPageView extends GetView<CalendarPageController> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       data,
-                      style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w500, fontSize: 20),
                     ),
                   ),
                   const SizedBox(height: 20.0),
@@ -110,15 +111,21 @@ class CalendarPageView extends GetView<CalendarPageController> {
                     height: 58.0,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: UtilsServices.getDiasDaSemanaEmPortugues().length,
+                      itemCount:
+                          UtilsServices.getDiasDaSemanaEmPortugues().length,
                       itemBuilder: (BuildContext context, int index) {
                         return CalendarDates(
-                          isSelect: int.parse(UtilsServices.getDiasDoMes()[index]) == DateTime.now().day ,
-                          day: UtilsServices.getDiasDaSemanaEmPortugues()[index],
+                          isSelect:
+                              int.parse(UtilsServices.getDiasDoMes()[index]) ==
+                                  DateTime.now().day,
+                          day:
+                              UtilsServices.getDiasDaSemanaEmPortugues()[index],
                           date: UtilsServices.getDiasDoMes()[index],
-                          dayColor: index == 0 ? LightColors.kRed : Colors.black54,
-                          dateColor:
-                              index == 0 ? LightColors.kRed : LightColors.kDarkBlue,
+                          dayColor:
+                              index == 0 ? LightColors.kRed : Colors.black54,
+                          dateColor: index == 0
+                              ? LightColors.kRed
+                              : LightColors.kDarkBlue,
                         );
                       },
                     ),
@@ -138,10 +145,11 @@ class CalendarPageView extends GetView<CalendarPageController> {
                                 itemCount: ultils.length,
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
-                                itemBuilder: (BuildContext context, int index) =>
-                                    Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 15.0),
+                                itemBuilder:
+                                    (BuildContext context, int index) =>
+                                        Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 15.0),
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(

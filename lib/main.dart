@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_to_do_list/app/modules/home/bindings/home_binding.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'package:flutter_to_do_list/app/routes/app_pages.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      initialBinding: HomeBinding(),
       debugShowCheckedModeBanner: false,
     );
   }

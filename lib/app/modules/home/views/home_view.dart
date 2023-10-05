@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_to_do_list/app/modules/CalendarPage/views/calendar_page_view.dart';
 import 'package:flutter_to_do_list/app/modules/home/controllers/home_controller.dart';
+import 'package:flutter_to_do_list/app/routes/app_pages.dart';
 import 'package:flutter_to_do_list/app/theme/colors/light_colors.dart';
 import 'package:flutter_to_do_list/app/widgets/active_project_card.dart';
 import 'package:flutter_to_do_list/app/widgets/task_column.dart';
@@ -10,8 +11,8 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({super.key});
-
+   HomeView({super.key});
+   final controller  = Get.find<HomeController>();
   Text subheading(String title) {
     return Text(
       title,
@@ -163,7 +164,7 @@ class HomeView extends GetView<HomeController> {
                               subheading('My Tasks'),
                               GestureDetector(
                                 onTap: () {
-                                  Get.to(() =>  CalendarPageView());
+                                  Get.toNamed(Routes.CALENDAR_PAGE);
                                 },
                                 child: calendarIcon(),
                               ),

@@ -7,6 +7,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    print('entrou no homer');
   }
 
   @override
