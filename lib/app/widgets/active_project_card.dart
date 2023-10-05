@@ -29,7 +29,7 @@ class ActiveProjectsCard extends StatelessWidget {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
@@ -53,36 +53,39 @@ class ActiveProjectsCard extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            
             Expanded(
-              // Adicione um Expanded
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  SizedBox(
-                    width: 150, // Defina um maxWidth adequado
-                    child: Text(
-                      title!,
-                      style: const TextStyle(
-                        fontSize: 14.0,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      overflow: TextOverflow
-                          .ellipsis, // Adiciona reticências no final do texto
-                    ),
-                  ),
-                  SizedBox(
-                    width: 150,
-                    child: Text(
-                      subtitle!,
-                      style: const TextStyle(
-                        fontSize: 12.0,
-                        color: Colors.white54,
-                        fontWeight: FontWeight.w400,
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      final maxWidth = constraints.maxWidth;
+                      return Text(
+                        title!,
+                        style: const TextStyle(
+                          fontSize: 14.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
                         overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
+                        maxLines: 1,
+                      );
+                    },
+                  ),
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      final maxWidth = constraints.maxWidth;
+                      return Text(
+                        subtitle!,
+                        style: const TextStyle(
+                          fontSize: 12.0,
+                          color: Colors.white54,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      );
+                    },
                   ),
                 ],
               ),

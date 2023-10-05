@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_to_do_list/app/modules/CalendarPage/controllers/calendar_page_controller.dart';
 import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/views/create_new_task_page_view.dart';
+import 'package:flutter_to_do_list/app/services/services.dart';
 import 'package:flutter_to_do_list/app/theme/colors/light_colors.dart';
 import 'package:flutter_to_do_list/app/widgets/back_button.dart';
 import 'package:flutter_to_do_list/app/widgets/calendar_dates.dart';
@@ -8,9 +9,12 @@ import 'package:flutter_to_do_list/app/widgets/task_container.dart';
 import 'package:flutter_to_do_list/dates_list.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class CalendarPageView extends GetView<CalendarPageController> {
   const CalendarPageView({super.key});
+
+  // Obtenha a data atual
 
   Widget _dashedText() {
     return Container(
@@ -26,6 +30,8 @@ class CalendarPageView extends GetView<CalendarPageController> {
 
   @override
   Widget build(BuildContext context) {
+    final String data = UtilsServices.formatDateTimeMesAno(DateTime.now());
+    final ultils  = UtilsServices.getHorarios();
     return Scaffold(
       backgroundColor: LightColors.kLightYellow,
       body: SafeArea(
@@ -48,25 +54,21 @@ class CalendarPageView extends GetView<CalendarPageController> {
                       style: TextStyle(
                           fontSize: 30.0, fontWeight: FontWeight.w700),
                     ),
+                    //botao de adicionar tarefa
                     Container(
                       height: 40.0,
-                      width: 120,
+                      width: 130,
                       decoration: BoxDecoration(
                         color: LightColors.kGreen,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: OutlinedButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const CreateNewTaskPageView(),
-                            ),
-                          );
+                          Get.to(() => const CreateNewTaskPageView());
                         },
                         child: const Center(
                           child: Text(
-                            'Add task',
+                            'Add Tarefa',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,
@@ -77,11 +79,12 @@ class CalendarPageView extends GetView<CalendarPageController> {
                     ),
                   ]),
               const SizedBox(height: 10),
+              //nome da pessoa
               const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    'Productive Day, Sourav',
+                    'Productive Day, Felipinho',
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.grey,
@@ -91,23 +94,25 @@ class CalendarPageView extends GetView<CalendarPageController> {
                 ],
               ),
               const SizedBox(height: 30),
-              const Align(
+              Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'April, 2020',
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                  data,
+                  style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
                 ),
               ),
               const SizedBox(height: 20.0),
+              //scrll dias do mes
               SizedBox(
                 height: 58.0,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: days.length,
+                  itemCount: UtilsServices.getDiasDaSemanaEmPortugues().length,
                   itemBuilder: (BuildContext context, int index) {
                     return CalendarDates(
-                      day: days[index],
-                      date: dates[index],
+                      isSelect: int.parse(UtilsServices.getDiasDoMes()[index]) == DateTime.now().day ,
+                      day: UtilsServices.getDiasDaSemanaEmPortugues()[index],
+                      date: UtilsServices.getDiasDoMes()[index],
                       dayColor: index == 0 ? LightColors.kRed : Colors.black54,
                       dateColor:
                           index == 0 ? LightColors.kRed : LightColors.kDarkBlue,
@@ -115,6 +120,7 @@ class CalendarPageView extends GetView<CalendarPageController> {
                   },
                 ),
               ),
+              // shrol das horas mes
               Expanded(
                 child: SingleChildScrollView(
                   child: Container(
@@ -126,7 +132,7 @@ class CalendarPageView extends GetView<CalendarPageController> {
                         Expanded(
                           flex: 1,
                           child: ListView.builder(
-                            itemCount: time.length,
+                            itemCount: ultils.length,
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (BuildContext context, int index) =>
@@ -136,7 +142,7 @@ class CalendarPageView extends GetView<CalendarPageController> {
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  '${time[index]} ${time[index] > 8 ? 'PM' : 'AM'}',
+                                  '${ultils[index]} ${ultils[index] > 8 ? 'PM' : 'AM'}',
                                   style: const TextStyle(
                                     fontSize: 16.0,
                                     color: Colors.black54,

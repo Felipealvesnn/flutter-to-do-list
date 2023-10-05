@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+
 import 'package:flutter_to_do_list/app/routes/app_pages.dart';
 import 'package:flutter_to_do_list/app/theme/colors/light_colors.dart';
-
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -15,6 +15,8 @@ void main() {
   return runApp(const MyApp());
 }
 
+
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -22,6 +24,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+        localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en', ''), // English, no country code
+        Locale('ar', ''), // Arabic, no country code
+        Locale('fr', ''),
+        Locale('pt_BR', ''),
+      ],
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,

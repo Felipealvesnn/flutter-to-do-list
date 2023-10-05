@@ -86,7 +86,7 @@ class HomeView extends GetView<HomeController> {
                                   .openDrawer(); // Abre o Drawer
                             },
                             icon: const Icon(Icons.menu, size: 25.0),
-                            color: Colors.blue, // Use a cor desejada
+                            color: LightColors.kDarkBlue, // Use a cor desejada
                           ),
                           const Icon(Icons.search,
                               color: LightColors.kDarkBlue, size: 25.0),
@@ -163,12 +163,7 @@ class HomeView extends GetView<HomeController> {
                               subheading('My Tasks'),
                               GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const CalendarPageView()),
-                                  );
+                                  Get.to(() =>  CalendarPageView());
                                 },
                                 child: calendarIcon(),
                               ),

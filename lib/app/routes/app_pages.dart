@@ -36,7 +36,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CALENDAR_PAGE,
-      page: () => const CalendarPageView(),
+      page: () =>  CalendarPageView(),
       binding: CalendarPageBinding(),
     ),
   ];
