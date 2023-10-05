@@ -2,7 +2,7 @@
 import 'dart:convert';
 import 'dart:ffi';
 
-class Talks {
+class TalksModel {
   Int id;
   String title;
   String description;
@@ -11,7 +11,7 @@ class Talks {
   String EndTime;
   int categoriaId;
   
-  Talks({
+  TalksModel({
     required this.id,
     required this.title,
     required this.description,
@@ -36,8 +36,8 @@ class Talks {
     };
   }
 
-  factory Talks.fromMap(Map<String, dynamic> map) {
-    return Talks(
+  factory TalksModel.fromMap(Map<String, dynamic> map) {
+    return TalksModel(
       id: map['id'],
       title: map['title'] ?? '',
       description: map['description'] ?? '',
@@ -50,5 +50,5 @@ class Talks {
 
   String toJson() => json.encode(toMap());
 
-  factory Talks.fromJson(String source) => Talks.fromMap(json.decode(source));
+  factory TalksModel.fromJson(String source) => TalksModel.fromMap(json.decode(source));
 }
