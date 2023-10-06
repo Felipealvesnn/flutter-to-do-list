@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_to_do_list/app/modules/CalendarPage/controllers/calendar_page_controller.dart';
+import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/controllers/create_new_task_page_controller.dart';
 import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/views/create_new_task_page_view.dart';
 import 'package:flutter_to_do_list/app/services/services.dart';
 import 'package:flutter_to_do_list/app/theme/colors/light_colors.dart';
@@ -10,9 +11,10 @@ import 'package:flutter_to_do_list/app/widgets/task_container.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class CalendarPageView extends GetView<CalendarPageController> {
+class CalendarPageView extends StatelessWidget {
   CalendarPageView({super.key});
-  final controller = Get.find<CalendarPageController>();
+
+  final controller = Get.find<CreateNewTaskPageController>();
 
   // Obtenha a data atual
 

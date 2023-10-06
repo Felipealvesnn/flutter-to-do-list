@@ -15,7 +15,8 @@ class RepositoryTalks {
   static Future<List<TalksModel>>GetTalks() async {
    // final results = await DbUtil.getData(NomeBanco.category, categoryColumns);
     final result = await DbUtil.getData(NomeBanco.talks, talksColumns);
-    return result.map((e) => TalksModel.fromMap(e)).toList();
+    final maplist = result.map((e) => TalksModel.fromMap(e)).toList();
+    return maplist;
   }
 
 

@@ -13,7 +13,7 @@ class CalendarPageController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    AddTalks();
+    
    // GetTalks();
   }
 
@@ -33,17 +33,7 @@ class CalendarPageController extends GetxController {
 
 
   }
-  Future<void> AddTalks() async {
-    talksModel.id = 1 ;
-    talksModel.title = 'teste';
-    talksModel.description = 'teste';
-    talksModel.date = 'teste';
-    talksModel.StartTime = 'teste';
-    talksModel.EndTime = 'teste';
-    talksModel.categoriaId = 1 ;
-    await RepositoryTalks.AddTask(talksModel);
-    
-  }
+ 
 
   void increment() => count.value++;
 }

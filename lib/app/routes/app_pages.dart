@@ -37,9 +37,10 @@ class AppPages {
     GetPage(
         name: _Paths.CALENDAR_PAGE,
         page: () =>  CalendarPageView(),
-        binding: 
+        bindings: [
           CalendarPageBinding(),
-         
+          CreateNewTaskPageBinding(),
+        ]
         ),
   ];
 }

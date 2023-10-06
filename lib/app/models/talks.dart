@@ -26,7 +26,7 @@ class TalksModel {
 
   Map<String, Object> toMap() {
     return {
-      'id': id!,
+     // 'id': id!,
       'title': title!,
       'description': description!,
       'date': date!,

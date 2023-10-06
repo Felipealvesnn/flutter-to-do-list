@@ -12,7 +12,7 @@ final categoryColumns = [
 ];
 
 final talksColumns = [
-  'id TEXT PRIMARY KEY',
+  'id INTEGER  PRIMARY KEY AUTOINCREMENT',
   'title TEXT',
   'description TEXT',
   'date TEXT',
