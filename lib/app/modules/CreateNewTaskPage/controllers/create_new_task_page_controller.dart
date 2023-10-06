@@ -36,9 +36,16 @@ class CreateNewTaskPageController extends GetxController {
     print(listTalks);
   }
 
+  Future<void> GetCategorys() async {
+    listTalks.value = await RepositoryTalks.GetTalks();
+    print(listTalks);
+  }
+
   Future<void> AddTalks() async {
     await RepositoryTalks.AddTask(talksModel);
   }
 
-  void increment() => count.value++;
+
+
+  
 }
