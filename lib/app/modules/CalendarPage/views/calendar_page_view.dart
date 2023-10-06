@@ -69,7 +69,7 @@ class CalendarPageView extends StatelessWidget {
                           ),
                           child: OutlinedButton(
                             onPressed: () {
-                              Get.to(() => const CreateNewTaskPageView());
+                              Get.to(() =>  CreateNewTaskPageView());
                             },
                             child: const Center(
                               child: Text(

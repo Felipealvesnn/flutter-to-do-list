@@ -31,7 +31,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CREATE_NEW_TASK_PAGE,
-      page: () => const CreateNewTaskPageView(),
+      page: () =>  CreateNewTaskPageView(),
       binding: CreateNewTaskPageBinding(),
     ),
     GetPage(
