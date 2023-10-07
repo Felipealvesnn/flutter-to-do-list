@@ -11,8 +11,8 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class HomeView extends GetView<HomeController> {
-   HomeView({super.key});
-   final controller  = Get.find<HomeController>();
+  HomeView({super.key});
+  final controller = Get.find<HomeController>();
   Text subheading(String title) {
     return Text(
       title,
@@ -110,9 +110,9 @@ class HomeView extends GetView<HomeController> {
                               backgroundColor: LightColors.kDarkYellow,
                               center: const CircleAvatar(
                                 backgroundColor: LightColors.kBlue,
-                                radius: 35.0,
-                                backgroundImage: AssetImage(
-                                  'assets/images/avatar.png',
+                                radius: 50.0,
+                                backgroundImage: NetworkImage(
+                                  'https://avatars.githubusercontent.com/u/88728350?s=400&u=3f1fb1f47fc18e90605ebc54b2ecddf07e528e12&v=4', // Substitua 'URL_DA_IMAGEM' pela URL da imagem da web
                                 ),
                               ),
                             ),
