@@ -8,6 +8,7 @@ class CreateNewTaskPageController extends GetxController {
   //TODO: Implement CreateNewTaskPageController
   TalksModel talksModel = TalksModel();
   RxList<Category> categoryList = RxList<Category>([]);
+  Rx<Category> categorySelecionada = Category().obs;
 
   RxList listTalks = [].obs;
   final count = 0.obs;
@@ -17,14 +18,13 @@ class CreateNewTaskPageController extends GetxController {
   Rx<TextEditingController> controllerEnd = TextEditingController().obs;
 
   @override
-  void onInit()  {
+  void onInit() {
     super.onInit();
-   //GetCategorys();
+    categorySelecionada.value = Category(id: 1);
+    GetCategorys();
 
-    GetTalks();
+    // GetTalks();
   }
-
-
 
   Future<void> GetTalks() async {
     listTalks.value = await RepositoryTalks.GetTalks();
@@ -37,6 +37,24 @@ class CreateNewTaskPageController extends GetxController {
   }
 
   Future<void> AddTalks() async {
-    await RepositoryTalks.AddTask(talksModel);
+    talksModel.categoriaId = categorySelecionada.value.id;
+    try {
+      await RepositoryTalks.AddTask(talksModel);
+      resetModeltal();
+      Get.snackbar(
+        "Sucesso",
+        "Os dados foram salvos com sucesso!",
+        duration: const Duration(seconds: 2), // Define a duração da mensagem
+      );
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  resetModeltal() {
+    talksModel = TalksModel();
+     controllerCalendar..value.clear();
+     controllerStart.value.clear();
+     controllerEnd.value.clear();
   }
 }

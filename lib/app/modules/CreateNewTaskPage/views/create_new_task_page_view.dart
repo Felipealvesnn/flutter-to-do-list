@@ -25,7 +25,7 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
         String? horainicial,
         String? horafinal}) {
       return IconButton(
-        icon: Icon(Icons.keyboard_arrow_down),
+        icon: const Icon(Icons.keyboard_arrow_down),
         onPressed: model != null
             ? (horainicial != null
                 ? () {
@@ -175,49 +175,57 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
                           maxLines: 3,
                         ),
                         const SizedBox(height: 20),
-                        Container(
-                          alignment: Alignment.topLeft,
-                          child: const Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                'Category',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black54,
-                                ),
-                              ),
-                              Wrap(
-                                crossAxisAlignment: WrapCrossAlignment.start,
-                                //direction: Axis.vertical,
-                                alignment: WrapAlignment.start,
-                                verticalDirection: VerticalDirection.down,
-                                runSpacing: 0,
-                                //textDirection: TextDirection.rtl,
-                                spacing: 10.0,
+                        Obx(() => Container(
+                              alignment: Alignment.topLeft,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Chip(
-                                    label: Text("SPORT APP"),
-                                    backgroundColor: LightColors.kRed,
-                                    labelStyle: TextStyle(color: Colors.white),
+                                  const Text(
+                                    'Category',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.black54,
+                                    ),
                                   ),
-                                  Chip(
-                                    label: Text("MEDICAL APP"),
-                                  ),
-                                  Chip(
-                                    label: Text("RENT APP"),
-                                  ),
-                                  Chip(
-                                    label: Text("NOTES"),
-                                  ),
-                                  Chip(
-                                    label: Text("GAMING PLATFORM APP"),
+                                  Wrap(
+                                    crossAxisAlignment:
+                                        WrapCrossAlignment.start,
+                                    //direction: Axis.vertical,
+                                    alignment: WrapAlignment.start,
+                                    verticalDirection: VerticalDirection.down,
+                                    runSpacing: 0,
+                                    //textDirection: TextDirection.rtl,
+                                    spacing: 10.0,
+                                    children:
+                                        // Chip(
+                                        //   label: Text("SPORT APP"),
+                                        //   backgroundColor: LightColors.kRed,
+                                        //   labelStyle: TextStyle(color: Colors.white),
+                                        // ),
+                                        controller.categoryList.value.map((e) {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          controller.categorySelecionada.value =
+                                              e;
+                                        },
+                                        child: Chip(
+                                          label: Text(e.nome!),
+                                          backgroundColor: controller
+                                                      .categorySelecionada
+                                                      .value
+                                                      .id ==
+                                                  e.id
+                                              ? LightColors.kRed
+                                              : null,
+                                          labelStyle: const TextStyle(
+                                              color: Colors.white),
+                                        ),
+                                      );
+                                    }).toList(),
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
-                        )
+                            ))
                       ],
                     ),
                   )),
@@ -227,6 +235,8 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
                       if (Keyform.currentState!.validate()) {
                         Keyform.currentState!.save();
                         controller.AddTalks();
+                        // Exibir mensagem de sucesso após salvar
+                       
                         Get.back();
                       }
                     },

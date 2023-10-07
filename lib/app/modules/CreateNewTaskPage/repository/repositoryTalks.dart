@@ -46,17 +46,17 @@ class RepositoryTalks {
     // Adicione suas categorias padrão aqui com os valores corretos para as colunas
     final defaultCategories = [
       {
-        'nome': 'Categoria 1',
-        'DataCriacao': DateTime.now()
+        'nome': 'Lazer',
+        'dataCriacao': DateTime.now()
             .toString(), // Você pode ajustar esta data conforme necessário
       },
       {
-        'nome': 'Categoria 2',
-        'DataCriacao': DateTime.now().toString(),
+        'nome': 'Saude',
+        'dataCriacao': DateTime.now().toString(),
       },
       {
-        'nome': 'Categoria 3',
-        'DataCriacao': DateTime.now().toString(),
+        'nome': 'Comida',
+        'dataCriacao': DateTime.now().toString(),
       },
     ];
 
