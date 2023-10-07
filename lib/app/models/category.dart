@@ -1,12 +1,12 @@
 class Category {
   int? id;
-  String nome;
-  String DataCriacao;
+  String? nome;
+  String? DataCriacao;
 
   Category({
     this.id,
-    required this.DataCriacao,
-    required this.nome,
+     this.DataCriacao,
+     this.nome,
   });
 
   Map<String, dynamic> toMap() {

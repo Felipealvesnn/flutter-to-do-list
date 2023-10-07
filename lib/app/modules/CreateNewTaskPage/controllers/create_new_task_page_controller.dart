@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_to_do_list/app/models/category.dart';
 import 'package:flutter_to_do_list/app/models/talks.dart';
 import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/repository/repositoryTalks.dart';
 import 'package:get/get.dart';
@@ -6,6 +7,8 @@ import 'package:get/get.dart';
 class CreateNewTaskPageController extends GetxController {
   //TODO: Implement CreateNewTaskPageController
   TalksModel talksModel = TalksModel();
+  RxList<Category> categoryList = RxList<Category>([]);
+
   RxList listTalks = [].obs;
   final count = 0.obs;
 
@@ -14,22 +17,14 @@ class CreateNewTaskPageController extends GetxController {
   Rx<TextEditingController> controllerEnd = TextEditingController().obs;
 
   @override
-  void onInit() {
+  void onInit()  {
     super.onInit();
+   //GetCategorys();
 
     GetTalks();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-    //GetTalks();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   Future<void> GetTalks() async {
     listTalks.value = await RepositoryTalks.GetTalks();
@@ -37,15 +32,11 @@ class CreateNewTaskPageController extends GetxController {
   }
 
   Future<void> GetCategorys() async {
-    listTalks.value = await RepositoryTalks.GetTalks();
-    print(listTalks);
+    categoryList.value = await RepositoryTalks.GetCategorys();
+    print(categoryList.value);
   }
 
   Future<void> AddTalks() async {
     await RepositoryTalks.AddTask(talksModel);
   }
-
-
-
-  
 }

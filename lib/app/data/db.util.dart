@@ -1,27 +1,30 @@
+import 'package:flutter_to_do_list/app/Constants/nameDbs.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart' as sql;
 
 class DbUtil {
- 
-   static Future<sql.Database> databaseStatic(String tableName, List<String> columns) async {
+  static Future<sql.Database> databaseStatic() async {
     final dbPath = await sql.getDatabasesPath();
-    final columnsString = columns.join(', ');
-    final createTableSQL = 'CREATE TABLE $tableName($columnsString)';
-    return sql.openDatabase(
-      join(dbPath + 'demos.db'),
-      onCreate: (db, version) {
-        return db.execute(
-         createTableSQL,
+    final List<String> testes = Query();
+    final db = await sql.openDatabase(
+      join(dbPath + 'tarefasApp.db'),
+      onCreate: (db, version) async {
+        await db.execute(
+          testes[0],
+        );
+        await db.execute(
+          testes[1],
         );
       },
-      version: 1,
+      version: 3,
     );
+    return db;
   }
 
   static Future<String> insert(
-      String table, Map<String, Object> data, List<String> columns) async {
+      String table, Map<String, Object> data) async {
     try {
-      final db = await databaseStatic(table, columns);
+      final db = await databaseStatic();
       await db.insert(
         table,
         data,
@@ -36,13 +39,13 @@ class DbUtil {
 
   static Future<void> delete(
       String table, String id, List<String> columns) async {
-    final db = await databaseStatic(table, columns);
+    final db = await databaseStatic();
     db.delete(table, where: 'id = ?', whereArgs: [id]);
   }
 
   static Future<void> edit(String table, String id,
-      Map<String, dynamic> valuesToUpdate, List<String> columns) async {
-    final db = await databaseStatic(table, columns);
+      Map<String, dynamic> valuesToUpdate) async {
+    final db = await databaseStatic();
     await db.update(
       table,
       valuesToUpdate,
@@ -52,8 +55,8 @@ class DbUtil {
   }
 
   static Future<List<Map<String, dynamic>>> getData(
-      String tablem, List<String> columns) async {
-    final db = await databaseStatic(tablem, columns);
+      String tablem) async {
+    final db = await databaseStatic();
     return db.query(tablem);
   }
 
