@@ -11,11 +11,13 @@ import 'package:flutter_to_do_list/app/widgets/task_container.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class CalendarPageView extends StatelessWidget {
   CalendarPageView({super.key});
 
   final controller = Get.find<CreateNewTaskPageController>();
+  final controllerCalendar = CalendarController();
 
   // Obtenha a data atual
 
@@ -38,7 +40,7 @@ class CalendarPageView extends StatelessWidget {
     return Scaffold(
       backgroundColor: LightColors.kLightYellow,
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: SafeArea(
             child: Padding(
@@ -100,113 +102,32 @@ class CalendarPageView extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 30),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      data,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w500, fontSize: 20),
-                    ),
-                  ),
+                  // Align(
+                  //   alignment: Alignment.centerLeft,
+                  //   child: Text(
+                  //     data,
+                  //     style: const TextStyle(
+                  //         fontWeight: FontWeight.w500, fontSize: 20),
+                  //   ),
+                  // ),
                   const SizedBox(height: 20.0),
-                  //scrll dias do mes
-                  SizedBox(
-                    height: 58.0,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount:
-                          UtilsServices.getDiasDaSemanaEmPortugues().length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return CalendarDates(
-                          isSelect:
-                              int.parse(UtilsServices.getDiasDoMes()[index]) ==
-                                  DateTime.now().day,
-                          day:
-                              UtilsServices.getDiasDaSemanaEmPortugues()[index],
-                          date: UtilsServices.getDiasDoMes()[index],
-                          dayColor:
-                              index == 0 ? LightColors.kRed : Colors.black54,
-                          dateColor: index == 0
-                              ? LightColors.kRed
-                              : LightColors.kDarkBlue,
-                        );
-                      },
-                    ),
-                  ),
-                  // shrol das horas mes
                   Expanded(
-                    child: SingleChildScrollView(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 20.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Expanded(
-                              flex: 1,
-                              child: ListView.builder(
-                                itemCount: ultils.length,
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemBuilder:
-                                    (BuildContext context, int index) =>
-                                        Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 15.0),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      '${ultils[index]} ${ultils[index] > 8 ? 'PM' : 'AM'}',
-                                      style: const TextStyle(
-                                        fontSize: 16.0,
-                                        color: Colors.black54,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Expanded(
-                              flex: 5,
-                              child: ListView(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                children: <Widget>[
-                                  _dashedText(),
-                                  TaskContainer(
-                                    title: 'Project Research',
-                                    subtitle:
-                                        'Discuss with the colleagues about the future plan',
-                                    boxColor: LightColors.kLightYellow2,
-                                  ),
-                                  _dashedText(),
-                                  TaskContainer(
-                                    title: 'Work on Medical App',
-                                    subtitle: 'Add medicine tab',
-                                    boxColor: LightColors.kLavender,
-                                  ),
-                                  TaskContainer(
-                                    title: 'Call',
-                                    subtitle: 'Call to david',
-                                    boxColor: LightColors.kPalePink,
-                                  ),
-                                  TaskContainer(
-                                    title: 'Design Meeting',
-                                    subtitle:
-                                        'Discuss with designers for new task for the medical app',
-                                    boxColor: LightColors.kLightGreen,
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+                    child: SfCalendar(
+                      dataSource: MeetingDataSource(_getDataSource()),
+                      monthViewSettings:
+                          const MonthViewSettings(appointmentDisplayCount: 2),
+                      controller: controllerCalendar,
+                      view: CalendarView.week,
+                      showNavigationArrow: true,
+                      showDatePickerButton: true,
+                      timeSlotViewSettings:
+                          const TimeSlotViewSettings(numberOfDaysInView: 4),
+                      todayHighlightColor: Colors.red,
+                      cellBorderColor: Colors.blue,
+
+                      //firstDayOfWeek: 1, // Monday
                     ),
-                  ),
+                  )
                 ],
               ),
             ),
@@ -215,4 +136,56 @@ class CalendarPageView extends StatelessWidget {
       ),
     );
   }
+}
+
+List<Meeting> _getDataSource() {
+  final List<Meeting> meetings = <Meeting>[];
+  final DateTime today = DateTime.now();
+  final DateTime startTime =
+      DateTime(today.year, today.month, today.day, 9, 0, 0);
+  final DateTime endTime = startTime.add(const Duration(hours: 2));
+  meetings.add(Meeting(
+      'Conference', startTime, endTime, const Color(0xFF0F8644), false));
+  return meetings;
+}
+
+class MeetingDataSource extends CalendarDataSource {
+  MeetingDataSource(List<Meeting> source) {
+    appointments = source;
+  }
+
+  @override
+  DateTime getStartTime(int index) {
+    return appointments![index].from;
+  }
+
+  @override
+  DateTime getEndTime(int index) {
+    return appointments![index].to;
+  }
+
+  @override
+  String getSubject(int index) {
+    return appointments![index].eventName;
+  }
+
+  @override
+  Color getColor(int index) {
+    return appointments![index].background;
+  }
+
+  @override
+  bool isAllDay(int index) {
+    return appointments![index].isAllDay;
+  }
+}
+
+class Meeting {
+  Meeting(this.eventName, this.from, this.to, this.background, this.isAllDay);
+
+  String eventName;
+  DateTime from;
+  DateTime to;
+  Color background;
+  bool isAllDay;
 }
