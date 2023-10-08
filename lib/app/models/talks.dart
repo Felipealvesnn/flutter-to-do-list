@@ -29,7 +29,7 @@ class TalksModel {
   Map<String, Object> toMap() {
     return {
       // 'id': id!,
-      'background': background!,
+      'background': background!.value,
       'isAllDay': isAllDay!,
       'title': title!,
       'description': description!,
@@ -42,8 +42,8 @@ class TalksModel {
 
   factory TalksModel.fromMap(Map<String, dynamic> map) {
     return TalksModel(
-      background: map['background'] ?? '',
-      isAllDay: map['isAllDay'] ?? '',
+      background: Color(map['backgroundValue'] ?? Colors.black), 
+      isAllDay: map['isAllDay'] ?? false,
       id: map['id'],
       title: map['title'] ?? '',
       description: map['description'] ?? '',

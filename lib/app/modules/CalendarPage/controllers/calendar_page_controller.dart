@@ -6,15 +6,15 @@ import 'package:get/get.dart';
 
 class CalendarPageController extends GetxController {
   //TODO: Implement CalendarPageController
-   RxList listTalks = [].obs;
-    TalksModel talksModel = TalksModel();
+  RxList listTalks = [].obs;
+  TalksModel talksModel = TalksModel();
 
   final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
-    
-   // GetTalks();
+
+    GetTalks();
   }
 
   @override
@@ -27,13 +27,9 @@ class CalendarPageController extends GetxController {
     super.onClose();
   }
 
-   Future<void> GetTalks() async {
-
+  Future<void> GetTalks() async {
     listTalks.value = await RepositoryTalks.GetTalks();
-
-
   }
- 
 
   void increment() => count.value++;
 }

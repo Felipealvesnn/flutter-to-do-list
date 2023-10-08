@@ -17,6 +17,8 @@ final talksColumns = [
   'StartTime TEXT',
   'EndTime TEXT',
   'categoriaId INTEGER', // Chave estrangeira
+  'backgroundValue INTEGER',
+  'isAllDay INTEGER'
 ];
 
 List<String> Query() {

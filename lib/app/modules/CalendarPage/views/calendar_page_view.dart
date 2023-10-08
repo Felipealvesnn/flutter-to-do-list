@@ -18,7 +18,8 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 class CalendarPageView extends StatelessWidget {
   CalendarPageView({super.key});
 
-  final controller = Get.find<CreateNewTaskPageController>();
+  //final controller = Get.find<CreateNewTaskPageController>();
+  final controllerCalendardd = Get.find<CalendarPageController>();
   final controllerCalendar = CalendarController();
 
   // Obtenha a data atual
