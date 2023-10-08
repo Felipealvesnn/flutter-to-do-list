@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_to_do_list/app/models/talks.dart';
 import 'package:flutter_to_do_list/app/modules/CalendarPage/controllers/calendar_page_controller.dart';
 import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/controllers/create_new_task_page_controller.dart';
 import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/views/create_new_task_page_view.dart';
 import 'package:flutter_to_do_list/app/routes/app_pages.dart';
+import 'package:flutter_to_do_list/app/services/modelToCalendar.dart';
 import 'package:flutter_to_do_list/app/services/services.dart';
 import 'package:flutter_to_do_list/app/theme/colors/light_colors.dart';
 import 'package:flutter_to_do_list/app/widgets/back_button.dart';
@@ -113,7 +115,7 @@ class CalendarPageView extends StatelessWidget {
                   const SizedBox(height: 20.0),
                   Expanded(
                     child: SfCalendar(
-                      dataSource: MeetingDataSource(_getDataSource()),
+                      dataSource: calendarioTRaadoo(_getDataSource()),
                       monthViewSettings:
                           const MonthViewSettings(appointmentDisplayCount: 2),
                       controller: controllerCalendar,
@@ -138,46 +140,23 @@ class CalendarPageView extends StatelessWidget {
   }
 }
 
-List<Meeting> _getDataSource() {
-  final List<Meeting> meetings = <Meeting>[];
+List<TalksModel> _getDataSource() {
+  final List<TalksModel> meetings = <TalksModel>[];
   final DateTime today = DateTime.now();
   final DateTime startTime =
       DateTime(today.year, today.month, today.day, 9, 0, 0);
   final DateTime endTime = startTime.add(const Duration(hours: 2));
-  meetings.add(Meeting(
-      'Conference', startTime, endTime, const Color(0xFF0F8644), false));
+  meetings.add(TalksModel(
+      id: 0,
+      background: Colors.blue,
+      isAllDay: false,
+      title: 'Meeting',
+      description: 'Meeting with clients',
+      date: today,
+      StartTime: startTime,
+      EndTime: endTime,
+      categoriaId: 1));
   return meetings;
-}
-
-class MeetingDataSource extends CalendarDataSource {
-  MeetingDataSource(List<Meeting> source) {
-    appointments = source;
-  }
-
-  @override
-  DateTime getStartTime(int index) {
-    return appointments![index].from;
-  }
-
-  @override
-  DateTime getEndTime(int index) {
-    return appointments![index].to;
-  }
-
-  @override
-  String getSubject(int index) {
-    return appointments![index].eventName;
-  }
-
-  @override
-  Color getColor(int index) {
-    return appointments![index].background;
-  }
-
-  @override
-  bool isAllDay(int index) {
-    return appointments![index].isAllDay;
-  }
 }
 
 class Meeting {

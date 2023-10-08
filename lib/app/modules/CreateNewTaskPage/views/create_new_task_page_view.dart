@@ -96,7 +96,7 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
                                         label: 'Date',
                                         icon: buildDownwardIcon(context),
                                         onSaved: (p0) {
-                                          controller.talksModel.date = p0;
+                                          controller.talksModel.date =  DateTime.parse(p0!) ;
                                         },
                                         Validator: nameValidator),
                                   ),
@@ -128,7 +128,7 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
                                 child: MyTextField(
                                   controller: controller.controllerStart.value,
                                   onSaved: (p0) {
-                                    controller.talksModel.StartTime = p0;
+                                    controller.talksModel.StartTime =  DateTime.parse(p0!);
                                   },
                                   label: 'Start Time',
                                   icon: controller
@@ -151,7 +151,7 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
                                 child: MyTextField(
                                   controller: controller.controllerEnd.value,
                                   onSaved: (p0) {
-                                    controller.talksModel.EndTime = p0;
+                                    controller.talksModel.EndTime =  DateTime.parse(p0!);
                                   },
                                   label: 'End Time',
                                   icon: buildDownwardIcon(context,
