@@ -12,6 +12,7 @@ class MyBackButton extends StatelessWidget {
       tag: 'backButton',
       child: GestureDetector(
         onTap: () {
+          FocusScope.of(context).unfocus();
           Get.back();
         },
         child: const Align(

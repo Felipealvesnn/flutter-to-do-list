@@ -61,7 +61,7 @@ class CalendarPageView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         const Text(
-                          'Today',
+                          'Olá',
                           style: TextStyle(
                               fontSize: 30.0, fontWeight: FontWeight.w700),
                         ),
@@ -128,6 +128,40 @@ class CalendarPageView extends StatelessWidget {
                               const TimeSlotViewSettings(numberOfDaysInView: 4),
                           todayHighlightColor: Colors.red,
                           cellBorderColor: Colors.blue,
+                          onTap: (CalendarTapDetails details) {
+                            if (details.targetElement ==
+                                CalendarElement.appointment) {
+                              // É um toque em uma atividade, abra um diálogo.
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    // Substitua isso por um diálogo personalizado para exibir informações detalhadas.
+                                    return AlertDialog(
+                                      title:
+                                          const Text('Detalhes da Atividade'),
+                                      content: const Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text('Título:}'),
+                                          Text('Descrição: }'),
+                                          // Adicione outras informações relevantes aqui.
+                                        ],
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context)
+                                                .pop(); // Fechar o diálogo.
+                                          },
+                                          child: const Text('Fechar'),
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            }
+                          },
 
                           //firstDayOfWeek: 1, // Monday
                         )),

@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:flutter_to_do_list/app/theme/colors/light_colors.dart';
+
 class TalksModel {
   int? id;
   String? title;
@@ -35,21 +37,10 @@ class TalksModel {
     int? categoriaId,
     bool? isAllDay,
   }) {
-    final List<Color> availableColors = [
-      Colors.blue,
-      Colors.red,
-      Colors.green,
-      Colors.purple,
-      Colors.orange,
-      // Adicione outras cores aqui, se desejar
-    ];
-
-    final Random random = Random();
-    final Color randomColor =
-        availableColors[random.nextInt(availableColors.length)];
+  
 
     return TalksModel(
-      background: randomColor,
+      background: LightColors.getRandomColor(),
       isAllDay: isAllDay ?? false,
       title: title ?? '',
       description: description ?? '',
