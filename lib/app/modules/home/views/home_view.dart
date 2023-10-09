@@ -208,21 +208,21 @@ class HomeView extends GetView<HomeController> {
                             SizedBox(
                                 height: 200,
                                 child: Obx(() => GridView.builder(
-                                  physics:  const NeverScrollableScrollPhysics(),
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
                                     gridDelegate:
                                         const SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
                                       childAspectRatio: 0.6,
                                       crossAxisSpacing: 10.0,
                                       mainAxisSpacing: 10.0,
-                                      
                                     ),
                                     itemCount:
                                         controller.listCategoryQtdTalks.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
                                       return ActiveProjectsCard(
-                                        cardColor: LightColors.kGreen,
+                                        cardColor: LightColors.getRandomColor(),
                                         loadingPercent: 0.25,
                                         title: controller
                                             .listCategoryQtdTalks[index].nome,

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class LightColors  {
@@ -13,4 +15,23 @@ class LightColors  {
   static const Color kGreen = Color(0xFF309397);
 
   static const Color kDarkBlue = Color(0xFF0D253F);
+
+
+   static final List<Color> colors = [
+    LightColors.kLightYellow,
+    LightColors.kLightYellow2,
+    LightColors.kDarkYellow,
+    LightColors.kPalePink,
+    LightColors.kRed,
+    LightColors.kLavender,
+    LightColors.kBlue,
+    LightColors.kLightGreen,
+    LightColors.kGreen,
+    LightColors.kDarkBlue,
+  ];
+
+   static Color getRandomColor() {
+    final random = Random();
+    return colors[random.nextInt(colors.length)];
+  }
 }
