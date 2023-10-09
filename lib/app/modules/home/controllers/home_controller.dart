@@ -22,5 +22,13 @@ class HomeController extends GetxController {
     print(listCategoryQtdTalks.value);
   }
 
+  int get porcentagemPorCategoria {
+    var total = 0;
+    for (var item in listCategoryQtdTalks.value) {
+      total += item.qtd;
+    }
+    return total;
+  }
+
   void increment() => count.value++;
 }
