@@ -13,6 +13,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeView({super.key});
+  @override
   final controller = Get.find();
   Text subheading(String title) {
     return Text(
@@ -172,12 +173,13 @@ class HomeView extends GetView<HomeController> {
                             ],
                           ),
                           Obx(
-                            () => Container(
-                              height: 100,
+                            () => SizedBox(
+                              height: 130,
                               child: ListView.separated(
-                                itemCount: controller.listCategoryQtdTalks.length,
+                                itemCount:
+                                    controller.listCategoryQtdTalks.length,
                                 separatorBuilder: (context, index) =>
-                                    SizedBox(height: 15.0),
+                                    const SizedBox(height: 15.0),
                                 itemBuilder: (context, index) {
                                   final task = controller
                                       .listCategoryQtdTalks.value[index];
@@ -199,46 +201,71 @@ class HomeView extends GetView<HomeController> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 10.0),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          subheading('Active Projects'),
-                          const SizedBox(height: 5.0),
-                          const Row(
-                            children: <Widget>[
-                              ActiveProjectsCard(
-                                cardColor: LightColors.kGreen,
-                                loadingPercent: 0.25,
-                                title: 'Medical App',
-                                subtitle: '9 hours progress',
-                              ),
-                              SizedBox(width: 20.0),
-                              ActiveProjectsCard(
-                                cardColor: LightColors.kRed,
-                                loadingPercent: 0.6,
-                                title: 'Making History Notes',
-                                subtitle: '20 hours progress',
-                              ),
-                            ],
-                          ),
-                          const Row(
-                            children: <Widget>[
-                              ActiveProjectsCard(
-                                cardColor: LightColors.kDarkYellow,
-                                loadingPercent: 0.45,
-                                title: 'Sports App',
-                                subtitle: '5 hours progress',
-                              ),
-                              SizedBox(width: 20.0),
-                              ActiveProjectsCard(
-                                cardColor: LightColors.kBlue,
-                                loadingPercent: 0.9,
-                                title: 'Online Flutter Course',
-                                subtitle: '23 hours progress',
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            subheading('Active Projects'),
+                            const SizedBox(height: 5.0),
+                            SizedBox(
+                                height: 200,
+                                child: Obx(() => GridView.builder(
+                                  physics:  const NeverScrollableScrollPhysics(),
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      childAspectRatio: 0.6,
+                                      crossAxisSpacing: 10.0,
+                                      mainAxisSpacing: 10.0,
+                                      
+                                    ),
+                                    itemCount:
+                                        controller.listCategoryQtdTalks.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return ActiveProjectsCard(
+                                        cardColor: LightColors.kGreen,
+                                        loadingPercent: 0.25,
+                                        title: controller
+                                            .listCategoryQtdTalks[index].nome,
+                                        subtitle:
+                                            '${controller.listCategoryQtdTalks[index].nome} Tarefas',
+                                      );
+                                    }))),
+                            //   const Row(
+                            //     children: <Widget>[
+                            //       ActiveProjectsCard(
+                            //         cardColor: LightColors.kGreen,
+                            //         loadingPercent: 0.25,
+                            //         title: 'Medical App',
+                            //         subtitle: '9 hours progress',
+                            //       ),
+                            //       SizedBox(width: 20.0),
+                            //       ActiveProjectsCard(
+                            //         cardColor: LightColors.kRed,
+                            //         loadingPercent: 0.6,
+                            //         title: 'Making History Notes',
+                            //         subtitle: '20 hours progress',
+                            //       ),
+                            //     ],
+                            //   ),
+                            //   const Row(
+                            //     children: <Widget>[
+                            //       ActiveProjectsCard(
+                            //         cardColor: LightColors.kDarkYellow,
+                            //         loadingPercent: 0.45,
+                            //         title: 'Sports App',
+                            //         subtitle: '5 hours progress',
+                            //       ),
+                            //       SizedBox(width: 20.0),
+                            //       ActiveProjectsCard(
+                            //         cardColor: LightColors.kBlue,
+                            //         loadingPercent: 0.9,
+                            //         title: 'Online Flutter Course',
+                            //         subtitle: '23 hours progress',
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ],
+                          ]),
                     ),
                   ],
                 ),
