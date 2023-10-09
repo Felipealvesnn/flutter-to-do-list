@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_to_do_list/app/modules/CalendarPage/controllers/calendar_page_controller.dart';
 import 'package:flutter_to_do_list/app/modules/CalendarPage/views/calendar_page_view.dart';
 import 'package:flutter_to_do_list/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter_to_do_list/app/routes/app_pages.dart';
@@ -12,7 +13,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeView({super.key});
-  final controller = Get.find<HomeController>();
+  final controller = Get.find();
   Text subheading(String title) {
     return Text(
       title,
@@ -48,8 +49,8 @@ class HomeView extends GetView<HomeController> {
           children: <Widget>[
             const DrawerHeader(
               decoration: BoxDecoration(
-              //  color: Colors.blue,
-              ),
+                  //  color: Colors.blue,
+                  ),
               child: Text('Header do Drawer'),
             ),
             ListTile(
@@ -161,7 +162,7 @@ class HomeView extends GetView<HomeController> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              subheading('My Tasks'),
+                              subheading('Minhas Tarefas'),
                               GestureDetector(
                                 onTap: () {
                                   Get.toNamed(Routes.CALENDAR_PAGE);
@@ -170,28 +171,25 @@ class HomeView extends GetView<HomeController> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 15.0),
-                          const TaskColumn(
-                            icon: Icons.alarm,
-                            iconBackgroundColor: LightColors.kRed,
-                            title: 'To Do',
-                            subtitle: '5 tasks now. 1 started',
-                          ),
-                          const SizedBox(
-                            height: 15.0,
-                          ),
-                          const TaskColumn(
-                            icon: Icons.blur_circular,
-                            iconBackgroundColor: LightColors.kDarkYellow,
-                            title: 'In Progress',
-                            subtitle: '1 tasks now. 1 started',
-                          ),
-                          const SizedBox(height: 15.0),
-                          const TaskColumn(
-                            icon: Icons.check_circle_outline,
-                            iconBackgroundColor: LightColors.kBlue,
-                            title: 'Done',
-                            subtitle: '18 tasks now. 13 started',
+                          Obx(
+                            () => Container(
+                              height: 100,
+                              child: ListView.separated(
+                                itemCount: controller.listCategoryQtdTalks.length,
+                                separatorBuilder: (context, index) =>
+                                    SizedBox(height: 15.0),
+                                itemBuilder: (context, index) {
+                                  final task = controller
+                                      .listCategoryQtdTalks.value[index];
+                                  return TaskColumn(
+                                    icon: task.icon,
+                                    iconBackgroundColor: LightColors.kBlue,
+                                    title: task.nome,
+                                    subtitle: '${task.qtd} Tarefas',
+                                  );
+                                },
+                              ),
+                            ),
                           ),
                         ],
                       ),
