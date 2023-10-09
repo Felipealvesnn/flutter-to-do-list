@@ -174,8 +174,9 @@ class HomeView extends GetView<HomeController> {
                           ),
                           Obx(
                             () => SizedBox(
-                              height: 130,
+                              height:  120, //controller.listCategoryQtdTalks.length * 59,
                               child: ListView.separated(
+                                // physics: const NeverScrollableScrollPhysics(),
                                 itemCount:
                                     controller.listCategoryQtdTalks.length,
                                 separatorBuilder: (context, index) =>
@@ -206,10 +207,15 @@ class HomeView extends GetView<HomeController> {
                             subheading('Active Projects'),
                             const SizedBox(height: 5.0),
                             SizedBox(
-                                height: 200,
-                                child: Obx(() => GridView.builder(
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
+                              height: controller.listCategoryQtdTalks.length *
+                                  (150),
+                              child: Obx(
+                                () => Visibility(
+                                  visible: controller
+                                          .listCategoryQtdTalks.isNotEmpty,
+                                  replacement: const CircularProgressIndicator(),
+                                  child: GridView.builder(
+                                    physics: const NeverScrollableScrollPhysics(),
                                     gridDelegate:
                                         const SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
@@ -229,7 +235,12 @@ class HomeView extends GetView<HomeController> {
                                         subtitle:
                                             '${controller.listCategoryQtdTalks[index].nome} Tarefas',
                                       );
-                                    }))),
+                                    },
+                                  ),
+                               
+                                ),
+                              ),
+                            ),
                             //   const Row(
                             //     children: <Widget>[
                             //       ActiveProjectsCard(
