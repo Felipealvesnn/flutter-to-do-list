@@ -96,7 +96,8 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
                                         label: 'Date',
                                         icon: buildDownwardIcon(context),
                                         onSaved: (p0) {
-                                          controller.talksModel.date =  DateTime.parse(p0!) ;
+                                          controller.talksModel.date =
+                                              DateTime.parse(p0!);
                                         },
                                         Validator: nameValidator),
                                   ),
@@ -128,7 +129,8 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
                                 child: MyTextField(
                                   controller: controller.controllerStart.value,
                                   onSaved: (p0) {
-                                    controller.talksModel.StartTime =  DateTime.parse(p0!);
+                                    controller.talksModel.StartTime =
+                                        parseTimeStringToDateTime(p0!);
                                   },
                                   label: 'Start Time',
                                   icon: controller
@@ -151,7 +153,8 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
                                 child: MyTextField(
                                   controller: controller.controllerEnd.value,
                                   onSaved: (p0) {
-                                    controller.talksModel.EndTime =  DateTime.parse(p0!);
+                                    controller.talksModel.EndTime =
+                                        parseTimeStringToDateTime(p0!);
                                   },
                                   label: 'End Time',
                                   icon: buildDownwardIcon(context,
@@ -170,7 +173,7 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
                             controller.talksModel.description = p0;
                           },
                           Validator: nameValidator,
-                          label: 'Description',
+                          label: 'Descricao',
                           minLines: 3,
                           maxLines: 3,
                         ),
@@ -181,7 +184,7 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   const Text(
-                                    'Category',
+                                    'Categoria',
                                     style: TextStyle(
                                       fontSize: 18,
                                       color: Colors.black54,
@@ -236,7 +239,7 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
                         Keyform.currentState!.save();
                         controller.AddTalks();
                         // Exibir mensagem de sucesso após salvar
-                       
+
                         Get.back();
                       }
                     },

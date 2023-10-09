@@ -17,7 +17,7 @@ final talksColumns = [
   'StartTime TEXT',
   'EndTime TEXT',
   'categoriaId INTEGER', // Chave estrangeira
-  'backgroundValue INTEGER',
+  'background INTEGER',
   'isAllDay INTEGER'
 ];
 

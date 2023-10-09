@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class CreateNewTaskPageController extends GetxController {
   //TODO: Implement CreateNewTaskPageController
-  TalksModel talksModel = TalksModel();
+  TalksModel talksModel = TalksModel(background: Colors.blue, isAllDay: false);
   RxList<Category> categoryList = RxList<Category>([]);
   Rx<Category> categorySelecionada = Category().obs;
 
@@ -40,12 +40,13 @@ class CreateNewTaskPageController extends GetxController {
     talksModel.categoriaId = categorySelecionada.value.id;
     try {
       await RepositoryTalks.AddTask(talksModel);
-      resetModeltal();
+
       Get.snackbar(
         "Sucesso",
         "Os dados foram salvos com sucesso!",
-        duration: const Duration(seconds: 2), // Define a duração da mensagem
+        duration: const Duration(seconds: 3), // Define a duração da mensagem
       );
+      resetModeltal();
     } catch (e) {
       print(e);
     }
@@ -53,8 +54,8 @@ class CreateNewTaskPageController extends GetxController {
 
   resetModeltal() {
     talksModel = TalksModel();
-     controllerCalendar..value.clear();
-     controllerStart.value.clear();
-     controllerEnd.value.clear();
+    controllerCalendar..value.clear();
+    controllerStart.value.clear();
+    controllerEnd.value.clear();
   }
 }
