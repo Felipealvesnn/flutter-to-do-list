@@ -115,21 +115,22 @@ class CalendarPageView extends StatelessWidget {
                   // ),
                   const SizedBox(height: 20.0),
                   Expanded(
-                    child: SfCalendar(
-                      dataSource: calendarioTRaadoo(_getDataSource()),
-                      monthViewSettings:
-                          const MonthViewSettings(appointmentDisplayCount: 2),
-                      controller: controllerCalendar,
-                      view: CalendarView.week,
-                      showNavigationArrow: true,
-                      showDatePickerButton: true,
-                      timeSlotViewSettings:
-                          const TimeSlotViewSettings(numberOfDaysInView: 4),
-                      todayHighlightColor: Colors.red,
-                      cellBorderColor: Colors.blue,
+                    child: Obx(() => SfCalendar(
+                          dataSource: calendarioTRaadoo(
+                              controllerCalendardd.listTalks.value),
+                          monthViewSettings: const MonthViewSettings(
+                              appointmentDisplayCount: 2),
+                          controller: controllerCalendar,
+                          view: CalendarView.week,
+                          showNavigationArrow: true,
+                          showDatePickerButton: true,
+                          timeSlotViewSettings:
+                              const TimeSlotViewSettings(numberOfDaysInView: 4),
+                          todayHighlightColor: Colors.red,
+                          cellBorderColor: Colors.blue,
 
-                      //firstDayOfWeek: 1, // Monday
-                    ),
+                          //firstDayOfWeek: 1, // Monday
+                        )),
                   )
                 ],
               ),
@@ -139,33 +140,4 @@ class CalendarPageView extends StatelessWidget {
       ),
     );
   }
-}
-
-List<TalksModel> _getDataSource() {
-  final List<TalksModel> meetings = <TalksModel>[];
-  final DateTime today = DateTime.now();
-  final DateTime startTime =
-      DateTime(today.year, today.month, today.day, 9, 0, 0);
-  final DateTime endTime = startTime.add(const Duration(hours: 2));
-  meetings.add(TalksModel(
-      id: 0,
-      background: Colors.blue,
-      isAllDay: false,
-      title: 'Meeting',
-      description: 'Meeting with clients',
-      date: today,
-      StartTime: startTime,
-      EndTime: endTime,
-      categoriaId: 1));
-  return meetings;
-}
-
-class Meeting {
-  Meeting(this.eventName, this.from, this.to, this.background, this.isAllDay);
-
-  String eventName;
-  DateTime from;
-  DateTime to;
-  Color background;
-  bool isAllDay;
 }

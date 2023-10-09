@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class CalendarPageController extends GetxController {
   //TODO: Implement CalendarPageController
-  RxList listTalks = [].obs;
+  RxList<TalksModel> listTalks = RxList<TalksModel>([]);
   TalksModel talksModel = TalksModel();
 
   final count = 0.obs;
@@ -21,7 +21,7 @@ class CalendarPageController extends GetxController {
   void onReady() {
     super.onReady();
   }
-
+ 
   @override
   void onClose() {
     super.onClose();

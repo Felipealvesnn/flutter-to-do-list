@@ -48,7 +48,7 @@ class HomeView extends GetView<HomeController> {
           children: <Widget>[
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+              //  color: Colors.blue,
               ),
               child: Text('Header do Drawer'),
             ),
@@ -121,7 +121,7 @@ class HomeView extends GetView<HomeController> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   Text(
-                                    'Sourav Suman',
+                                    'Felipe Alves',
                                     textAlign: TextAlign.start,
                                     style: TextStyle(
                                       fontSize: 22.0,

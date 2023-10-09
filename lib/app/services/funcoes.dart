@@ -92,7 +92,7 @@ TimeOfDay parseTimeString(String timeString) {
 
 
 
-DateTime parseTimeStringToDateTime(String timeString) {
+DateTime parseTimeStringToDateTime(DateTime date, String timeString) {
   List<String> parts = timeString.split(" ");
   
   if (parts.length != 2) {
@@ -117,6 +117,6 @@ DateTime parseTimeStringToDateTime(String timeString) {
     hours = 0;
   }
   
-  DateTime now = DateTime.now();
-  return DateTime(now.year, now.month, now.day, hours, minutes);
+ 
+  return DateTime(date.year, date.month, date.day, hours, minutes);
 }

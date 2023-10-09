@@ -33,17 +33,17 @@ class TalksModel {
       'isAllDay': isAllDay!,
       'title': title!,
       'description': description!,
-      'date': date.toString()?? '',
-      'StartTime': StartTime.toString()?? '',
-      'EndTime': EndTime.toString()?? '',
+      'date': date.toString() ?? '',
+      'StartTime': StartTime.toString() ?? '',
+      'EndTime': EndTime.toString() ?? '',
       'categoriaId': categoriaId!,
     };
   }
 
   factory TalksModel.fromMap(Map<String, dynamic> map) {
     return TalksModel(
-      background: Color(map['backgroundValue'] ?? Colors.black),
-      isAllDay: map['isAllDay'] ?? false,
+      background: Color(map['background'] ?? Colors.black),
+      isAllDay: map['isAllDay'] == 1,
       id: map['id'],
       title: map['title'] ?? '',
       description: map['description'] ?? '',

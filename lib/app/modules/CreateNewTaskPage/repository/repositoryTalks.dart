@@ -18,7 +18,9 @@ class RepositoryTalks {
   static Future<List<TalksModel>> GetTalks() async {
     // final results = await DbUtil.getData(NomeBanco.category, categoryColumns);
     final result = await DbUtil.getData(NomeBanco.talks);
-    final maplist = result.map((e) => TalksModel.fromMap(e)).toList();
+    final maplist = result.map((e) {
+      return TalksModel.fromMap(e);
+    }).toList();
     return maplist;
   }
 
@@ -34,8 +36,9 @@ class RepositoryTalks {
       await addDefaultCategories();
 
       // Após adicionar as categorias padrão, recupere os dados novamente
-      final updatedResult =
-          await DbUtil.getData(NomeBanco.category, );
+      final updatedResult = await DbUtil.getData(
+        NomeBanco.category,
+      );
       maplist.addAll(updatedResult.map((e) => Category.fromMap(e)));
     }
 
@@ -62,8 +65,10 @@ class RepositoryTalks {
 
     for (final category in defaultCategories) {
       try {
-        final result =
-            await DbUtil.insert(NomeBanco.category, category,);
+        final result = await DbUtil.insert(
+          NomeBanco.category,
+          category,
+        );
       } catch (e) {
         print(e);
       }
