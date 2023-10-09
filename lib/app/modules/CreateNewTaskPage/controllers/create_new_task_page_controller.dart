@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 class CreateNewTaskPageController extends GetxController {
   //TODO: Implement CreateNewTaskPageController
-  TalksModel talksModel = TalksModel(background: Colors.blue, isAllDay: false);
+  TalksModel talksModel = TalksModel.withRandomColor();
   RxList<Category> categoryList = RxList<Category>([]);
   Rx<Category> categorySelecionada = Category().obs;
     final controllerCalendardd = Get.find<CalendarPageController>();

@@ -1,7 +1,6 @@
 import 'dart:convert';
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class TalksModel {
   int? id;
@@ -11,8 +10,8 @@ class TalksModel {
   DateTime? StartTime;
   DateTime? EndTime;
   int? categoriaId;
-  Color? background = Colors.blue;
-  bool? isAllDay = false;
+  Color? background;
+  bool? isAllDay;
 
   TalksModel({
     this.background,
@@ -25,6 +24,41 @@ class TalksModel {
     this.EndTime,
     this.categoriaId,
   });
+
+  // Construtor para criar uma instância com cor aleatória
+  factory TalksModel.withRandomColor({
+    String? title,
+    String? description,
+    DateTime? date,
+    DateTime? StartTime,
+    DateTime? EndTime,
+    int? categoriaId,
+    bool? isAllDay,
+  }) {
+    final List<Color> availableColors = [
+      Colors.blue,
+      Colors.red,
+      Colors.green,
+      Colors.purple,
+      Colors.orange,
+      // Adicione outras cores aqui, se desejar
+    ];
+
+    final Random random = Random();
+    final Color randomColor =
+        availableColors[random.nextInt(availableColors.length)];
+
+    return TalksModel(
+      background: randomColor,
+      isAllDay: isAllDay ?? false,
+      title: title ?? '',
+      description: description ?? '',
+      date: date,
+      StartTime: StartTime,
+      EndTime: EndTime,
+      categoriaId: categoriaId ?? 0,
+    );
+  }
 
   Map<String, Object> toMap() {
     return {
@@ -40,6 +74,7 @@ class TalksModel {
     };
   }
 
+  // Método para desserializar o JSON em um objeto TalksModel
   factory TalksModel.fromMap(Map<String, dynamic> map) {
     return TalksModel(
       background: Color(map['background'] ?? Colors.black),
@@ -47,16 +82,19 @@ class TalksModel {
       id: map['id'],
       title: map['title'] ?? '',
       description: map['description'] ?? '',
-      date: map['date'] != null ? DateTime.parse(map['date']) : null,
+      date: map['date'] != null ? DateTime.tryParse(map['date']) : null,
       StartTime:
-          map['StartTime'] != null ? DateTime.parse(map['StartTime']) : null,
-      EndTime: map['EndTime'] != null ? DateTime.parse(map['EndTime']) : null,
+          map['StartTime'] != null ? DateTime.tryParse(map['StartTime']) : null,
+      EndTime:
+          map['EndTime'] != null ? DateTime.tryParse(map['EndTime']) : null,
       categoriaId: map['categoriaId']?.toInt() ?? 0,
     );
   }
 
+  // Método para serializar o objeto em JSON como uma string
   String toJson() => json.encode(toMap());
 
+  // Método para desserializar o JSON em um objeto TalksModel a partir de uma string JSON
   factory TalksModel.fromJson(String source) =>
       TalksModel.fromMap(json.decode(source));
 }
