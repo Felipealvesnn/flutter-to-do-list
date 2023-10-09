@@ -229,7 +229,8 @@ class HomeView extends GetView<HomeController> {
                                         (BuildContext context, int index) {
                                       return ActiveProjectsCard(
                                         cardColor: LightColors.getRandomColor(),
-                                        loadingPercent: 0.25,
+                                        loadingPercent: controller
+                                            .listCategoryQtdTalks[index].porcentagem,
                                         title: controller
                                             .listCategoryQtdTalks[index].nome,
                                         subtitle:
