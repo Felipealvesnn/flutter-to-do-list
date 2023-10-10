@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart'; // importante pra data funcionar
+import 'package:intl/intl.dart';
 
 TimeOfDay _time = const TimeOfDay(hour: 00, minute: 00);
 
@@ -143,3 +145,10 @@ DateTime parseTimeStringToDateTime(DateTime date, String timeString) {
         color: Colors.black54,
       );
     }
+
+   String formatDateTime(DateTime dateTime) {
+    initializeDateFormatting();
+
+    DateFormat dateFormat = DateFormat.yMd('pt_BR'); //.add_Hm();
+    return dateFormat.format(dateTime).trim();
+  }

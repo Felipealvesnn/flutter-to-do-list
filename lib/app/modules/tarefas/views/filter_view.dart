@@ -14,6 +14,7 @@ import 'package:get/get.dart';
 class FilterView extends StatelessWidget {
   FilterView({super.key});
   final controller = Get.find<TarefasController>();
+  final _form = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -44,71 +45,81 @@ class FilterView extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  MyTextField(
-                    label: 'Title',
-                    onSaved: (p0) {
-                      controller.filterModel.value.title = p0;
-                    },
-                    Validator: nameValidator,
-                  ),
-                  Obx(
-                    () => Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        Expanded(
-                          child: MyTextField(
-                            controller: controller.controller.value,
-                            label: 'Date',
-                            icon: buildDownwardIcon(context),
-                            onSaved: (p0) {
-                              controller.filterModel.value.date =
-                                  DateTime.parse(p0!);
-                            },
-                            //Validator: nameValidator
+              Form(
+                key: _form,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    MyTextField(
+                      label: 'Title',
+                      onSaved: (p0) {
+                        controller.filterModel.value.title = p0;
+                      },
+                      // Validator: nameValidator,
+                    ),
+                    Obx(
+                      () => Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          Expanded(
+                            child: MyTextField(
+                              controller: controller.controller.value,
+                              label: 'Date',
+                              icon: buildDownwardIcon(context),
+                              onSaved: (p0) {
+                                if (p0!.isEmpty) return;
+                                controller.filterModel.value.date =
+                                    DateTime.parse(p0!);
+                              },
+                              //Validator: nameValidator
+                            ),
+                          ),
+                          GestureDetector(
+                              onTap: () {
+                                openCalendar(context, controller.controller);
+                              },
+                              child: HomeView.calendarIcon()),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        FocusScope.of(context).unfocus();
+                        if (_form.currentState!.validate()) {
+                          _form.currentState!.save();
+                          controller.filterTalskList();
+                          _form.currentState!.reset();
+                          controller.controller.value.clear();
+                          controller.filterModel.value.date = null;
+                        }
+
+                        Get.back();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: LightColors.kBlue, // Cor de fundo
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(30), // Borda arredondada
+                        ),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        child: Text(
+                          'Create Task',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18,
                           ),
                         ),
-                        GestureDetector(
-                            onTap: () {
-                              openCalendar(context, controller.controller);
-                            },
-                            child: HomeView.calendarIcon()),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  
-                  ElevatedButton(
-                    onPressed: () {
-                      FocusScope.of(context).unfocus();
-
-                      Get.back();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: LightColors.kBlue, // Cor de fundo
-                      shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(30), // Borda arredondada
                       ),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                      child: Text(
-                        'Create Task',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               )
             ],
           ),

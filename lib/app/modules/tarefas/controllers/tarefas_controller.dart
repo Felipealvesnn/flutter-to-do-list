@@ -5,16 +5,17 @@ import 'package:flutter_to_do_list/app/models/talks.dart';
 import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/repository/repositoryTalks.dart';
 
 class TarefasController extends GetxController {
- 
   RxList<TalksModel> listtalks = RxList<TalksModel>([]);
   Rx<TextEditingController> controller = TextEditingController().obs;
   Rx<FilterModel> filterModel = FilterModel().obs;
+  List<TalksModel> listtalksAll = [];
   final count = 0.obs;
   @override
   void onInit() async {
     super.onInit();
 
     listtalks.value = await RepositoryTalks.GetTalks();
+    listtalksAll = listtalks.value;
   }
 
   @override
@@ -27,7 +28,29 @@ class TarefasController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  void filterTalskList() {
+    bool conditionMet = false;
+
+    if (filterModel.value.title!.isNotEmpty) {
+      listtalks.value = listtalksAll
+          .where((element) =>
+              element.title!.toLowerCase().contains(filterModel.value.title!))
+          .toList();
+      conditionMet = true;
+    }
+
+    if ( filterModel.value.date != null) {
+      listtalks.value = listtalksAll
+          .where((element) =>
+              element.date!.isAtSameMomentAs(filterModel.value.date!))
+          .toList();
+      conditionMet = true;
+    }
+
+    if (!conditionMet) {
+      listtalks.value = listtalksAll;
+    }
+  }
 }
 
 class FilterModel {
