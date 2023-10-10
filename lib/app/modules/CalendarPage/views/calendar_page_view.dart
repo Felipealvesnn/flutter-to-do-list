@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_to_do_list/app/models/talks.dart';
 import 'package:flutter_to_do_list/app/modules/CalendarPage/controllers/calendar_page_controller.dart';
+import 'package:flutter_to_do_list/app/modules/CalendarPage/utils/funcoesCalendar.dart';
 import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/controllers/create_new_task_page_controller.dart';
 import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/views/create_new_task_page_view.dart';
 import 'package:flutter_to_do_list/app/routes/app_pages.dart';
@@ -35,6 +36,8 @@ class CalendarPageView extends StatelessWidget {
       ),
     );
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -129,38 +132,7 @@ class CalendarPageView extends StatelessWidget {
                           todayHighlightColor: Colors.red,
                           cellBorderColor: Colors.blue,
                           onTap: (CalendarTapDetails details) {
-                            if (details.targetElement ==
-                                CalendarElement.appointment) {
-                              // É um toque em uma atividade, abra um diálogo.
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    // Substitua isso por um diálogo personalizado para exibir informações detalhadas.
-                                    return AlertDialog(
-                                      title:
-                                          const Text('Detalhes da Atividade'),
-                                      content: const Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Text('Título:}'),
-                                          Text('Descrição: }'),
-                                          // Adicione outras informações relevantes aqui.
-                                        ],
-                                      ),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.of(context)
-                                                .pop(); // Fechar o diálogo.
-                                          },
-                                          child: const Text('Fechar'),
-                                        ),
-                                      ],
-                                    );
-                                  });
-                            }
+                              FunceCalendar.calendarTapped(details, context);
                           },
 
                           //firstDayOfWeek: 1, // Monday

@@ -3,6 +3,7 @@ import 'package:flutter_to_do_list/app/models/category.dart';
 import 'package:flutter_to_do_list/app/models/talks.dart';
 import 'package:flutter_to_do_list/app/modules/CalendarPage/controllers/calendar_page_controller.dart';
 import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/repository/repositoryTalks.dart';
+import 'package:flutter_to_do_list/app/modules/home/controllers/home_controller.dart';
 import 'package:get/get.dart';
 
 class CreateNewTaskPageController extends GetxController {
@@ -11,6 +12,7 @@ class CreateNewTaskPageController extends GetxController {
   RxList<Category> categoryList = RxList<Category>([]);
   Rx<Category> categorySelecionada = Category().obs;
     final controllerCalendardd = Get.find<CalendarPageController>();
+     final homeController = Get.find<HomeController>();
 
   RxList listTalks = [].obs;
   final count = 0.obs;
@@ -43,6 +45,7 @@ class CreateNewTaskPageController extends GetxController {
     try {
       await RepositoryTalks.AddTask(talksModel);
      controllerCalendardd.listTalks.add(talksModel);
+     homeController.GetTalksQtd();
 
       Get.snackbar(
         "Sucesso",
