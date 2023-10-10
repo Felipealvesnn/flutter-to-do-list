@@ -20,7 +20,7 @@ class CalendarDates extends StatelessWidget {
     return Container(
       decoration: isSelect!
           ? BoxDecoration(
-              color: Color.fromARGB(46, 221, 52, 52) ,
+              color: const Color.fromARGB(46, 221, 52, 52) ,
               borderRadius: BorderRadius.circular(10),
             )
           : null,

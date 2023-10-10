@@ -7,8 +7,6 @@ import '../modules/CreateNewTaskPage/views/create_new_task_page_view.dart';
 import '../modules/base/bindings/base_binding.dart';
 import '../modules/base/views/base_view.dart';
 import '../modules/home/bindings/home_binding.dart';
-import '../modules/home/bindings/home_binding.dart';
-import '../modules/home/views/home_view.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/tarefas/bindings/tarefas_binding.dart';
 import '../modules/tarefas/views/tarefas_view.dart';

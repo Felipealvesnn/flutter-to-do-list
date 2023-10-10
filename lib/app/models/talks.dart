@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 import 'package:flutter_to_do_list/app/theme/colors/light_colors.dart';
 
@@ -58,9 +57,9 @@ class TalksModel {
       'isAllDay': isAllDay!,
       'title': title!,
       'description': description!,
-      'date': date.toString() ?? '',
-      'StartTime': StartTime.toString() ?? '',
-      'EndTime': EndTime.toString() ?? '',
+      'date': date.toString(),
+      'StartTime': StartTime.toString(),
+      'EndTime': EndTime.toString(),
       'categoriaId': categoriaId!,
     };
   }

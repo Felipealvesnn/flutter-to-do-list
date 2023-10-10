@@ -1,7 +1,5 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_to_do_list/app/Constants/validators.dart';
 import 'package:flutter_to_do_list/app/modules/home/views/home_view.dart';
 import 'package:flutter_to_do_list/app/modules/tarefas/controllers/tarefas_controller.dart';
 import 'package:flutter_to_do_list/app/services/funcoes.dart';
@@ -64,20 +62,20 @@ class FilterView extends StatelessWidget {
                         children: <Widget>[
                           Expanded(
                             child: MyTextField(
-                              controller: controller.controller.value,
+                              controller: controller.controllerCalendar.value,
                               label: 'Date',
                               icon: buildDownwardIcon(context),
                               onSaved: (p0) {
                                 if (p0!.isEmpty) return;
                                 controller.filterModel.value.date =
-                                    DateTime.parse(p0!);
+                                    DateTime.parse(p0);
                               },
                               //Validator: nameValidator
                             ),
                           ),
                           GestureDetector(
                               onTap: () {
-                                openCalendar(context, controller.controller);
+                                openCalendar(context, controller.controllerCalendar);
                               },
                               child: HomeView.calendarIcon()),
                         ],
@@ -93,7 +91,7 @@ class FilterView extends StatelessWidget {
                           _form.currentState!.save();
                           controller.filterTalskList();
                           _form.currentState!.reset();
-                          controller.controller.value.clear();
+                          controller.controllerCalendar.value.clear();
                           controller.filterModel.value.date = null;
                         }
 

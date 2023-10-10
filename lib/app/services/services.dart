@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart'; // importante pra data funcionar
 import 'package:intl/intl.dart';
 

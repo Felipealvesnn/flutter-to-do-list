@@ -45,7 +45,7 @@ Future<bool?> updaTePassoword(BuildContext context) {
                       onPressed: () {
                         Navigator.pop(context, true);
                       },
-                      child: Text("Editar"),
+                      child: const Text("Editar"),
                     ),
                   ),
                 ],
@@ -58,7 +58,7 @@ Future<bool?> updaTePassoword(BuildContext context) {
                 onPressed: () {
                   Get.back();
                 },
-                icon: Icon(Icons.close),
+                icon: const Icon(Icons.close),
               ),
             ),
           ],

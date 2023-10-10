@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:flutter_to_do_list/app/models/talks.dart';
 import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/repository/repositoryTalks.dart';
@@ -17,15 +16,7 @@ class CalendarPageController extends GetxController {
     GetTalks();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
  
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   Future<void> GetTalks() async {
     listTalks.value = await RepositoryTalks.GetTalks();

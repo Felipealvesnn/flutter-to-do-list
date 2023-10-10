@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_to_do_list/app/models/talks.dart';
 import 'package:flutter_to_do_list/app/modules/CalendarPage/controllers/calendar_page_controller.dart';
 import 'package:flutter_to_do_list/app/modules/CalendarPage/utils/funcoesCalendar.dart';
-import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/controllers/create_new_task_page_controller.dart';
-import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/views/create_new_task_page_view.dart';
 import 'package:flutter_to_do_list/app/routes/app_pages.dart';
 import 'package:flutter_to_do_list/app/services/modelToCalendar.dart';
 import 'package:flutter_to_do_list/app/services/services.dart';
 import 'package:flutter_to_do_list/app/theme/colors/light_colors.dart';
 import 'package:flutter_to_do_list/app/widgets/back_button.dart';
-import 'package:flutter_to_do_list/app/widgets/calendar_dates.dart';
-import 'package:flutter_to_do_list/app/widgets/task_container.dart';
 
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class CalendarPageView extends StatelessWidget {

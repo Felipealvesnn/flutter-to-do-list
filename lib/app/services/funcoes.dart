@@ -89,7 +89,7 @@ TimeOfDay parseTimeString(String timeString) {
   }
 
   // Se a análise falhar ou o formato da string estiver incorreto, retorne um valor padrão (por exemplo, meia-noite)
-  return TimeOfDay(hour: 0, minute: 0);
+  return const TimeOfDay(hour: 0, minute: 0);
 }
 
 

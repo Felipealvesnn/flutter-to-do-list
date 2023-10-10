@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_to_do_list/app/models/talks.dart';
+import 'package:flutter_to_do_list/app/modules/tarefas/views/edit_view.dart';
 import 'package:flutter_to_do_list/app/modules/tarefas/views/filter_view.dart';
 import 'package:flutter_to_do_list/app/services/funcoes.dart';
 import 'package:flutter_to_do_list/app/theme/colors/light_colors.dart';
@@ -18,8 +19,8 @@ class TarefasView extends GetView<TarefasController> {
         // Retorna o widget do diálogo de confirmação
         return AlertDialog(
           title: const Text('Confirmar exclusão'),
-          content:
-              Text('Tem certeza de que deseja excluir a tarefa "${talk.title}"?'),
+          content: Text(
+              'Tem certeza de que deseja excluir a tarefa "${talk.title}"?'),
           actions: <Widget>[
             TextButton(
               child: const Text('Cancelar'),
@@ -70,7 +71,8 @@ class TarefasView extends GetView<TarefasController> {
                 // Aqui você pode criar um widget para exibir os detalhes de cada objeto TalksModel.
                 return ListTile(
                   onTap: () {
-                    print('clicado');
+                    navigationController.talksModel = talk;
+                    Get.to(() => EditTaskPageView());
                   },
                   trailing: IconButton(
                     icon: const Icon(Icons.delete),
@@ -78,7 +80,7 @@ class TarefasView extends GetView<TarefasController> {
                       certeza(context, talk);
                     },
                   ),
-          
+
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
@@ -110,9 +112,9 @@ class TarefasView extends GetView<TarefasController> {
                       ),
                     ],
                   ),
-          
+
                   subtitle: Text(talk.description ?? ""),
-          
+
                   // Adicione outros campos conforme necessário.
                 );
               },

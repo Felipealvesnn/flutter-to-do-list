@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_to_do_list/app/models/talks.dart';
-import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/repository/repositoryTalks.dart';
 import 'package:get/get.dart';
 
 abstract class NavigationTabs {
@@ -30,15 +28,7 @@ class BaseController extends GetxController {
     );
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void _initNavigation(
       {required PageController pageController, required int initialPage}) {

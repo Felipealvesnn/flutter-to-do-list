@@ -7,7 +7,7 @@ class DbUtil {
     final dbPath = await sql.getDatabasesPath();
     final List<String> testes = Query();
     final db = await sql.openDatabase(
-      join(dbPath + 'tarefasAppFel.db'),
+      join('${dbPath}tarefasAppFel.db'),
       onCreate: (db, version) async {
         await db.execute(
           testes[0],

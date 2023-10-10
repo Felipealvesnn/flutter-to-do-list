@@ -5,6 +5,7 @@ class MyTextField extends StatelessWidget {
   final int? maxLines;
   final int? minLines;
   final Widget? icon;
+  final String? initialValue;
   final TextEditingController? controller;
   final String? Function(String?)? Validator;
   final void Function(String?)? onSaved;
@@ -13,6 +14,7 @@ class MyTextField extends StatelessWidget {
       {Key? key,
       this.label,
       this.Validator,
+      this.initialValue,
       this.controller,
       this.onSaved,
       this.maxLines,
@@ -23,6 +25,7 @@ class MyTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: initialValue,
       onSaved: onSaved,
       validator: Validator,
       controller: controller,

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_to_do_list/app/modules/CalendarPage/controllers/calendar_page_controller.dart';
-import 'package:flutter_to_do_list/app/modules/CalendarPage/views/calendar_page_view.dart';
 import 'package:flutter_to_do_list/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter_to_do_list/app/routes/app_pages.dart';
 import 'package:flutter_to_do_list/app/theme/colors/light_colors.dart';
