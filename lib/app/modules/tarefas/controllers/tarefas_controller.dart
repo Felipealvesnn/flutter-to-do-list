@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,8 +16,7 @@ class TarefasController extends GetxController {
   void onInit() async {
     super.onInit();
 
-    listtalks.value = await RepositoryTalks.GetTalks();
-    listtalksAll = listtalks.value;
+   atualizar();
   }
 
   @override
@@ -28,6 +29,14 @@ class TarefasController extends GetxController {
     super.onClose();
   }
 
+  Future<void> deleteTalk(TalksModel talksModel) async {
+    await RepositoryTalks.deteleTalk(talksModel);
+    atualizar();
+  }
+  Future<void> atualizar() async {
+    listtalks.value = await RepositoryTalks.GetTalks();
+    listtalksAll = listtalks.value;
+  }
   void filterTalskList() {
     bool conditionMet = false;
 
@@ -39,7 +48,7 @@ class TarefasController extends GetxController {
       conditionMet = true;
     }
 
-    if ( filterModel.value.date != null) {
+    if (filterModel.value.date != null) {
       listtalks.value = listtalksAll
           .where((element) =>
               element.date!.isAtSameMomentAs(filterModel.value.date!))

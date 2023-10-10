@@ -38,7 +38,7 @@ class DbUtil {
   }
 
   static Future<void> delete(
-      String table, String id, List<String> columns) async {
+      String table, String id) async {
     final db = await databaseStatic();
     db.delete(table, where: 'id = ?', whereArgs: [id]);
   }

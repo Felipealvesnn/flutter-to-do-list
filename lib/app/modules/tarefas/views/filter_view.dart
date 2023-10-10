@@ -109,7 +109,7 @@ class FilterView extends StatelessWidget {
                       child: const Padding(
                         padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                         child: Text(
-                          'Create Task',
+                          'Filtrar',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w700,

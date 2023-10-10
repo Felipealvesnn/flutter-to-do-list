@@ -45,6 +45,17 @@ class RepositoryTalks {
     return maplist;
   }
 
+  static Future<void> deteleTalk(TalksModel talksModel) async {
+    try {
+      final result = await DbUtil.delete(
+        NomeBanco.talks,
+        talksModel.id!.toString(),
+      );
+    } catch (e) {
+      print(e);
+    }
+  }
+
   static Future<void> addDefaultCategories() async {
     // Adicione suas categorias padrão aqui com os valores corretos para as colunas
     final defaultCategories = [
