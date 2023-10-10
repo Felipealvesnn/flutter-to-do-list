@@ -25,6 +25,7 @@ class MyTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTapOutside: (event) => FocusScope.of(context).unfocus(),
       initialValue: initialValue,
       onSaved: onSaved,
       validator: Validator,
