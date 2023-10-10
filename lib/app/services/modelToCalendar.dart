@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_to_do_list/app/models/talks.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-class calendarioTRaadoo extends CalendarDataSource {
+class calendarioTRaadoo extends CalendarDataSource<TalksModel> {
 
   calendarioTRaadoo(List<TalksModel> source) {
     appointments = source;
@@ -36,5 +36,9 @@ class calendarioTRaadoo extends CalendarDataSource {
   @override
   bool isAllDay(int index) {
     return appointments![index].isAllDay;
+  }
+
+  String descricao(int index) {
+    return appointments![index].Descricao;
   }
 }

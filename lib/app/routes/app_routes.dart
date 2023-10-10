@@ -6,6 +6,8 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const CREATE_NEW_TASK_PAGE = _Paths.CREATE_NEW_TASK_PAGE;
   static const CALENDAR_PAGE = _Paths.CALENDAR_PAGE;
+  static const BASE = _Paths.BASE;
+  static const TAREFAS = _Paths.TAREFAS;
 }
 
 abstract class _Paths {
@@ -13,4 +15,6 @@ abstract class _Paths {
   static const HOME = '/home';
   static const CREATE_NEW_TASK_PAGE = '/create-new-task-page';
   static const CALENDAR_PAGE = '/calendar-page';
+  static const BASE = '/base';
+  static const TAREFAS = '/tarefas';
 }

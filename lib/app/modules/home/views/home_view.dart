@@ -286,27 +286,6 @@ class HomeView extends GetView<HomeController> {
           ],
         ),
       ),
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) {},
-        indicatorColor: Colors.amber[800],
-        //selectedIndex: currentPageIndex,
-        destinations: const <Widget>[
-          NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.business),
-            label: 'Business',
-          ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.school),
-            icon: Icon(Icons.school_outlined),
-            label: 'School',
-          ),
-        ],
-      ),
     );
   }
 }
