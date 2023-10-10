@@ -16,8 +16,6 @@ void main() {
   return runApp(const MyApp());
 }
 
-
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -25,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        localizationsDelegates: const [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
       ],
       supportedLocales: const [
@@ -36,6 +34,10 @@ class MyApp extends StatelessWidget {
       ],
       title: 'Flutter Demo',
       theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          backgroundColor: LightColors
+              .kDarkYellow, // Define a cor de fundo globalmente para todos os AppBar
+        ),
         primarySwatch: Colors.blue,
         textTheme: Theme.of(context).textTheme.apply(
             bodyColor: LightColors.kDarkBlue,

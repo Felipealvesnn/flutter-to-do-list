@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_to_do_list/app/models/talks.dart';
+import 'package:flutter_to_do_list/app/modules/tarefas/views/filter_view.dart';
+import 'package:flutter_to_do_list/app/theme/colors/light_colors.dart';
 import 'package:get/get.dart';
 
 import '../controllers/tarefas_controller.dart';
@@ -12,7 +14,16 @@ class TarefasView extends GetView<TarefasController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: LightColors.kDarkYellow,
         title: const Text("Tarefas"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.filter_list),
+            onPressed: () {
+            Get.to(() => FilterView());
+            },
+          ),
+        ],
       ),
       body: ListView.separated(
         separatorBuilder: (BuildContext context, int index) => const Divider(),
@@ -27,16 +38,17 @@ class TarefasView extends GetView<TarefasController> {
             trailing: IconButton(
               icon: const Icon(Icons.delete),
               onPressed: () {
-               // navigationController.deleteTalk(talk);
+                // navigationController.deleteTalk(talk);
               },
             ),
             title: Text(talk.title ?? ""),
             subtitle: Text(talk.description ?? ""),
             // Adicione outros campos conforme necessário.
-           
           );
         },
       ),
     );
   }
+
+ 
 }

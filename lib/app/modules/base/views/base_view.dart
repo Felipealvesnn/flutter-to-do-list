@@ -39,8 +39,8 @@ class BaseView extends GetView<BaseController> {
             ),
             NavigationDestination(
               selectedIcon: Icon(Icons.school),
-              icon: Icon(Icons.school_outlined),
-              label: 'School',
+              icon: Icon(Icons.category_outlined),
+              label: 'Categorias',
             ),
           ],
         ),

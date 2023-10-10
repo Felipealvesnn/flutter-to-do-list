@@ -120,3 +120,26 @@ DateTime parseTimeStringToDateTime(DateTime date, String timeString) {
  
   return DateTime(date.year, date.month, date.day, hours, minutes);
 }
+
+ IconButton buildDownwardIcon(BuildContext context,
+        {Rx<TextEditingController>? model,
+        String? horainicial,
+        String? horafinal}) {
+      return IconButton(
+        icon: const Icon(Icons.keyboard_arrow_down),
+        onPressed: model != null
+            ? (horainicial != null
+                ? () {
+                    showhora(context, model,
+                        horainicial:
+                            horainicial); // Chama a função de seleção de horário
+                  }
+                : () {
+                    showhora(context, model,
+                        horafinal:
+                            horafinal); // Chama a função de seleção de horário
+                  })
+            : null,
+        color: Colors.black54,
+      );
+    }
