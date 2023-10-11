@@ -12,8 +12,6 @@ import 'package:flutter_to_do_list/app/widgets/top_container.dart';
 import 'package:get/get.dart';
 
 class EditTaskPageView extends GetView<TarefasController> {
-  
- 
   @override
   final controller = Get.find();
   final Keyform = GlobalKey<FormState>();
@@ -73,9 +71,12 @@ class EditTaskPageView extends GetView<TarefasController> {
                                 children: <Widget>[
                                   Expanded(
                                     child: MyTextField(
-                                        controller: controller
-                                            .controllerCalendar.value,
-                                            
+                                        initialValue: controller
+                                            .talksModel.date!
+                                            .toString()
+                                            .split(' ')[0],
+                                        controller:
+                                            controller.controllerCalendar.value,
                                         label: 'Date',
                                         icon: buildDownwardIcon(context),
                                         onSaved: (p0) {
@@ -110,6 +111,10 @@ class EditTaskPageView extends GetView<TarefasController> {
                             Obx(
                               () => Expanded(
                                 child: MyTextField(
+                                  initialValue: controller.talksModel.StartTime!
+                                      .toString()
+                                      .split(' ')[1]
+                                      .split('.')[0],
                                   controller: controller.controllerStart.value,
                                   onSaved: (p0) {
                                     controller.talksModel.StartTime =
@@ -135,6 +140,10 @@ class EditTaskPageView extends GetView<TarefasController> {
                             Obx(
                               () => Expanded(
                                 child: MyTextField(
+                                  initialValue: controller.talksModel.EndTime!
+                                      .toString()
+                                      .split(' ')[1]
+                                      .split('.')[0],
                                   controller: controller.controllerEnd.value,
                                   onSaved: (p0) {
                                     controller.talksModel.EndTime =
