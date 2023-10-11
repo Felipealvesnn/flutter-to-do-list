@@ -1,12 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_to_do_list/app/models/category.dart';
+import 'package:flutter_to_do_list/app/modules/CalendarPage/controllers/calendar_page_controller.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter_to_do_list/app/models/talks.dart';
 import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/repository/repositoryTalks.dart';
 
 class TarefasController extends GetxController {
+
   TalksModel talksModel = TalksModel.withRandomColor();
   RxList<Category> categoryList = RxList<Category>([]);
   RxList<TalksModel> listtalks = RxList<TalksModel>([]);
@@ -26,8 +27,6 @@ class TarefasController extends GetxController {
     atualizar();
   }
 
-
-
   Future<void> GetCategorys() async {
     categoryList.value = await RepositoryTalks.GetCategorys();
   }
@@ -41,9 +40,33 @@ class TarefasController extends GetxController {
     listtalks.value = await RepositoryTalks.GetTalks();
     listtalksAll = listtalks.value;
   }
-  Future<void> editarTal()async{
 
-    
+  Future<void> editarTal() async {
+    talksModel.categoriaId = categorySelecionada.value.id;
+    try {
+      await RepositoryTalks.AddTask(talksModel);
+      homeController.GetTalksQtd();
+
+      Get.snackbar(
+        "Sucesso",
+        "Os dados foram salvos com sucesso!",
+        duration: const Duration(seconds: 3), // Define a duração da mensagem
+      );
+      resetModeltal();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> PreencherCampos(
+      TalksModel talksModel, BuildContext context) async {
+    TimeOfDay startTime = TimeOfDay.fromDateTime(talksModel.StartTime!);
+    TimeOfDay endTime = TimeOfDay.fromDateTime(talksModel.EndTime!);
+    controllerCalendar.value.text = talksModel.date.toString().split(' ')[0];
+
+    controllerStart.value.text = startTime.format(context);
+    controllerEnd.value.text = endTime.format(context);
+    categorySelecionada.value.id = talksModel.categoriaId!;
   }
 
   void filterTalskList() {

@@ -71,10 +71,10 @@ class EditTaskPageView extends GetView<TarefasController> {
                                 children: <Widget>[
                                   Expanded(
                                     child: MyTextField(
-                                        initialValue: controller
-                                            .talksModel.date!
-                                            .toString()
-                                            .split(' ')[0],
+                                        //initialValue: controller
+                                            //.talksModel.date!
+                                            //.toString(),
+                                            //.split(' ')[0],
                                         controller:
                                             controller.controllerCalendar.value,
                                         label: 'Date',
@@ -111,10 +111,10 @@ class EditTaskPageView extends GetView<TarefasController> {
                             Obx(
                               () => Expanded(
                                 child: MyTextField(
-                                  initialValue: controller.talksModel.StartTime!
-                                      .toString()
-                                      .split(' ')[1]
-                                      .split('.')[0],
+                                  // initialValue: controller.talksModel.StartTime!
+                                  //     .toString()
+                                  //     .split(' ')[1]
+                                  //     .split('.')[0],
                                   controller: controller.controllerStart.value,
                                   onSaved: (p0) {
                                     controller.talksModel.StartTime =
@@ -140,10 +140,10 @@ class EditTaskPageView extends GetView<TarefasController> {
                             Obx(
                               () => Expanded(
                                 child: MyTextField(
-                                  initialValue: controller.talksModel.EndTime!
-                                      .toString()
-                                      .split(' ')[1]
-                                      .split('.')[0],
+                                  // initialValue: controller.talksModel.EndTime!
+                                  //     .toString()
+                                  //     .split(' ')[1]
+                                  //     .split('.')[0],
                                   controller: controller.controllerEnd.value,
                                   onSaved: (p0) {
                                     controller.talksModel.EndTime =
@@ -163,6 +163,7 @@ class EditTaskPageView extends GetView<TarefasController> {
                         ),
                         const SizedBox(height: 20),
                         MyTextField(
+                          initialValue: controller.talksModel.description,
                           onSaved: (p0) {
                             controller.talksModel.description = p0;
                           },

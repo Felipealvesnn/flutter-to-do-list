@@ -70,8 +70,9 @@ class TarefasView extends GetView<TarefasController> {
                 TalksModel talk = navigationController.listtalks.value[index];
                 // Aqui você pode criar um widget para exibir os detalhes de cada objeto TalksModel.
                 return ListTile(
-                  onTap: () {
+                  onTap: () async {
                     navigationController.talksModel = talk;
+                    await navigationController.PreencherCampos(talk, context);
                     Get.to(() => EditTaskPageView());
                   },
                   trailing: IconButton(

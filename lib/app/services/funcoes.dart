@@ -12,7 +12,6 @@ void showhora(BuildContext context, Rx<TextEditingController> model,
     initialTime: _time,
   );
   if (horainicial != null && newTime != null) {
-    // Verifique se o horário selecionado é maior que 15:00 (3:00 PM)
     final TimeOfDay minTime = parseTimeString(horainicial);
 
     if (newTime.hour < minTime.hour ||
@@ -26,7 +25,7 @@ void showhora(BuildContext context, Rx<TextEditingController> model,
       );
     } else {
       _time = newTime;
-      model.value = TextEditingController(text: _time.format(context));
+      model.value.text = _time.format(context);
     }
   }
   if ((horafinal != null && newTime != null)) {
@@ -45,7 +44,7 @@ void showhora(BuildContext context, Rx<TextEditingController> model,
     }
   } else if (newTime != null) {
     _time = newTime;
-    model.value = TextEditingController(text: _time.format(context));
+    model.value.text = _time.format(context);
   }
 }
 
@@ -92,63 +91,60 @@ TimeOfDay parseTimeString(String timeString) {
   return const TimeOfDay(hour: 0, minute: 0);
 }
 
-
-
 DateTime parseTimeStringToDateTime(DateTime date, String timeString) {
   List<String> parts = timeString.split(" ");
-  
+
   if (parts.length != 2) {
     throw ArgumentError("A string não está no formato correto.");
   }
-  
+
   String timePart = parts[0];
   String amPmPart = parts[1];
-  
+
   List<String> timeParts = timePart.split(":");
-  
+
   if (timeParts.length != 2) {
     throw ArgumentError("A string não está no formato correto.");
   }
-  
+
   int hours = int.parse(timeParts[0]);
   int minutes = int.parse(timeParts[1]);
-  
+
   if (amPmPart == "PM" && hours != 12) {
     hours += 12;
   } else if (amPmPart == "AM" && hours == 12) {
     hours = 0;
   }
-  
- 
+
   return DateTime(date.year, date.month, date.day, hours, minutes);
 }
 
- IconButton buildDownwardIcon(BuildContext context,
-        {Rx<TextEditingController>? model,
-        String? horainicial,
-        String? horafinal}) {
-      return IconButton(
-        icon: const Icon(Icons.keyboard_arrow_down),
-        onPressed: model != null
-            ? (horainicial != null
-                ? () {
-                    showhora(context, model,
-                        horainicial:
-                            horainicial); // Chama a função de seleção de horário
-                  }
-                : () {
-                    showhora(context, model,
-                        horafinal:
-                            horafinal); // Chama a função de seleção de horário
-                  })
-            : null,
-        color: Colors.black54,
-      );
-    }
+IconButton buildDownwardIcon(BuildContext context,
+    {Rx<TextEditingController>? model,
+    String? horainicial,
+    String? horafinal}) {
+  return IconButton(
+    icon: const Icon(Icons.keyboard_arrow_down),
+    onPressed: model != null
+        ? (horainicial != null
+            ? () {
+                showhora(context, model,
+                    horainicial:
+                        horainicial); // Chama a função de seleção de horário
+              }
+            : () {
+                showhora(context, model,
+                    horafinal:
+                        horafinal); // Chama a função de seleção de horário
+              })
+        : null,
+    color: Colors.black54,
+  );
+}
 
-   String formatDateTime(DateTime dateTime) {
-    initializeDateFormatting();
+String formatDateTime(DateTime dateTime) {
+  initializeDateFormatting();
 
-    DateFormat dateFormat = DateFormat.yMd('pt_BR'); //.add_Hm();
-    return dateFormat.format(dateTime).trim();
-  }
+  DateFormat dateFormat = DateFormat.yMd('pt_BR'); //.add_Hm();
+  return dateFormat.format(dateTime).trim();
+}
