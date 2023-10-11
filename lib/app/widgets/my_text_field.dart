@@ -24,23 +24,25 @@ class MyTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      onTapOutside: (event) => FocusScope.of(context).unfocus(),
-      initialValue: initialValue,
-      onSaved: onSaved,
-      validator: Validator,
-      controller: controller,
-      style: const TextStyle(color: Colors.black87),
-      minLines: minLines,
-      maxLines: maxLines,
-      decoration: InputDecoration(
-          suffixIcon: icon,
-          labelText: label,
-          labelStyle: const TextStyle(color: Colors.black45),
-          focusedBorder: const UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.black)),
-          border: const UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey))),
+    return TapRegion(
+      child: TextFormField(
+        onTapOutside: (event) => FocusScope.of(context).unfocus(),
+        initialValue: initialValue,
+        onSaved: onSaved,
+        validator: Validator,
+        controller: controller,
+        style: const TextStyle(color: Colors.black87),
+        minLines: minLines,
+        maxLines: maxLines,
+        decoration: InputDecoration(
+            suffixIcon: icon,
+            labelText: label,
+            labelStyle: const TextStyle(color: Colors.black45),
+            focusedBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.black)),
+            border: const UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey))),
+      ),
     );
   }
 }
