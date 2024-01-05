@@ -46,7 +46,8 @@ class AppPages {
     GetPage(
       name: _Paths.BASE,
       page: () => BaseView(),
-      bindings:[ BaseBinding(),
+      bindings:[
+         BaseBinding(),
         TarefasBinding()
       ],
     ),

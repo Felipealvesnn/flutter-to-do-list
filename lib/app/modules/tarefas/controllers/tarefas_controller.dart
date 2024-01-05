@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_to_do_list/app/models/category.dart';
 import 'package:flutter_to_do_list/app/modules/CalendarPage/controllers/calendar_page_controller.dart';
+import 'package:flutter_to_do_list/app/modules/home/controllers/home_controller.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter_to_do_list/app/models/talks.dart';
 import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/repository/repositoryTalks.dart';
 
 class TarefasController extends GetxController {
-
+  final controllerHomeController = Get.find<HomeController>();
   TalksModel talksModel = TalksModel.withRandomColor();
   RxList<Category> categoryList = RxList<Category>([]);
   RxList<TalksModel> listtalks = RxList<TalksModel>([]);
@@ -22,13 +23,19 @@ class TarefasController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    GetCategorys();
+
     categorySelecionada.value = Category(id: 1);
     atualizar();
   }
 
+  @override
+  void onReady() {
+    GetCategorys();
+    super.onReady();
+  }
+
   Future<void> GetCategorys() async {
-    categoryList.value = await RepositoryTalks.getCategories();
+    categoryList.value = controllerHomeController.listCategory;
   }
 
   Future<void> deleteTalk(TalksModel talksModel) async {
@@ -45,7 +52,7 @@ class TarefasController extends GetxController {
     talksModel.categoriaId = categorySelecionada.value.id;
     try {
       await RepositoryTalks.addTask(talksModel);
-    
+
       Get.snackbar(
         "Sucesso",
         "Os dados foram salvos com sucesso!",
