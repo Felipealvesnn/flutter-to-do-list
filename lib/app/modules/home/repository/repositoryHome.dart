@@ -20,8 +20,12 @@ class RepositoryHome {
       // Calcule a porcentagem para esta categoria
       // double percentage = (talksForCategory.length / totalTalks) * 100;
 
-      double percentage =
-          (talksForCategory.length.toDouble() / totalTalks.toDouble());
+      double percentage = 0;
+
+      if (totalTalks != 0) {
+        percentage =
+            (talksForCategory.length.toDouble() / totalTalks.toDouble());
+      }
 
       // Crie um objeto CategoryQtdTalks
       var categoryQtdTalks = CategoryQtdTalks(

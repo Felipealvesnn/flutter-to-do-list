@@ -1,9 +1,11 @@
 import 'package:flutter_to_do_list/app/Constants/nameDbs.dart';
+import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/repository/repositoryTalks.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart' as sql;
 
-class DbUtil {
-  static Future<sql.Database> databaseStatic() async {
+class DbUtil implements DatabaseInstanceProvider {
+  @override
+  Future<sql.Database> databaseStatic() async {
     final dbPath = await sql.getDatabasesPath();
     final List<String> testes = Query();
     final db = await sql.openDatabase(
@@ -21,8 +23,8 @@ class DbUtil {
     return db;
   }
 
-  static Future<String> insert(
-      String table, Map<String, Object> data) async {
+  @override
+  Future<void> insert(String table, Map<String, Object> data) async {
     try {
       final db = await databaseStatic();
       await db.insert(
@@ -30,21 +32,20 @@ class DbUtil {
         data,
         conflictAlgorithm: sql.ConflictAlgorithm.replace,
       );
-      return "Inserção bem-sucedida";
     } catch (e) {
-      print(e);
-      return "Erro ao inserir os dados: $e";
+      print("Erro ao inserir os dados: $e");
+      throw e;
     }
   }
 
-  static Future<void> delete(
-      String table, String id) async {
+  @override
+  Future<void> delete(String table, String id) async {
     final db = await databaseStatic();
-    db.delete(table, where: 'id = ?', whereArgs: [id]);
+    await db.delete(table, where: 'id = ?', whereArgs: [id]);
   }
 
-  static Future<void> edit(String table, String id,
-      Map<String, dynamic> valuesToUpdate) async {
+  @override
+  Future<void> edit(String table, String id, Map<String, dynamic> valuesToUpdate) async {
     final db = await databaseStatic();
     await db.update(
       table,
@@ -54,10 +55,21 @@ class DbUtil {
     );
   }
 
-  static Future<List<Map<String, dynamic>>> getData(
-      String tablem) async {
+  @override
+  Future<List<Map<String, dynamic>>> getData(String tablem) async {
     final db = await databaseStatic();
     return db.query(tablem);
+  }
+  
+  @override
+  Future<void> closeDatabase() async {
+    final db = await databaseStatic();
+    await db.close();
+  }
+  
+  @override
+  Future<void> openDatabase() async {
+    await databaseStatic();
   }
 
   // Resto do seu código...

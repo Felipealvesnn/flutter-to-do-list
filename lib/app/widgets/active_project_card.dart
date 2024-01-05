@@ -8,12 +8,12 @@ class ActiveProjectsCard extends StatelessWidget {
   final String? subtitle;
 
   const ActiveProjectsCard({
-    super.key,
+    Key? key,
     this.cardColor,
     this.loadingPercent,
     this.title,
     this.subtitle,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +34,13 @@ class ActiveProjectsCard extends StatelessWidget {
             child: CircularPercentIndicator(
               animation: true,
               radius: 60,
-              percent: loadingPercent!,
+              percent: loadingPercent ?? 0.0,
               lineWidth: 5.0,
               circularStrokeCap: CircularStrokeCap.round,
               backgroundColor: Colors.white10,
               progressColor: Colors.white,
               center: Text(
-                '${(loadingPercent! * 100).round()}%',
+                '${((loadingPercent ?? 0.0) * 100).round()}%',
                 style: const TextStyle(
                   fontWeight: FontWeight.w700,
                   color: Colors.white,

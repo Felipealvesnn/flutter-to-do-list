@@ -1,15 +1,17 @@
+import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/repository/repositoryTalks.dart';
 import 'package:sqflite_common/sqlite_api.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import '../Constants/nameDbs.dart';
 
-class DatabaseHelper {
+class DatabaseHelper implements DatabaseInstanceProvider {
   static late Database _database;
 
-  static Future<void> openDatabase() async {
+  @override
+  Future<void> openDatabase() async {
     final List<String> testes = Query();
     sqfliteFfiInit();
-    
+
     var databaseFactory = databaseFactoryFfi;
     _database = await databaseFactory.openDatabase(inMemoryDatabasePath);
 
@@ -17,7 +19,8 @@ class DatabaseHelper {
     await _database.execute(testes[1]);
   }
 
-  static Future<int> insert(String table, Map<String, Object> data) async {
+  @override
+  Future<int> insert(String table, Map<String, Object> data) async {
     try {
       return await _database.insert(
         table,
@@ -30,11 +33,14 @@ class DatabaseHelper {
     }
   }
 
-  static Future<List<Map<String, dynamic>>> getData(String table) async {
+  @override
+  Future<List<Map<String, dynamic>>> getData(String table) async {
     return await _database.query(table);
   }
 
-  static Future<int> edit(String table, int id, Map<String, dynamic> valuesToUpdate) async {
+  @override
+  Future<int> edit(
+      String table, String id, Map<String, dynamic> valuesToUpdate) async {
     return await _database.update(
       table,
       valuesToUpdate,
@@ -43,7 +49,8 @@ class DatabaseHelper {
     );
   }
 
-  static Future<int> delete(String table, int id) async {
+  @override
+  Future<int> delete(String table, String id) async {
     return await _database.delete(
       table,
       where: 'id = ?',
@@ -51,7 +58,8 @@ class DatabaseHelper {
     );
   }
 
-  static Future<void> closeDatabase() async {
+  @override
+  Future<void> closeDatabase() async {
     await _database.close();
   }
 }

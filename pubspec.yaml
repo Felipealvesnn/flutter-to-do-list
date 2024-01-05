@@ -18,6 +18,7 @@ dependencies:
   reflectable: ^4.0.5
   path: ^1.8.3
   syncfusion_flutter_calendar: ^23.1.39
+  sqflite_common_ffi: ^2.3.2
  
 
 dev_dependencies: 

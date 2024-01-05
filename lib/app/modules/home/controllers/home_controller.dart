@@ -11,7 +11,7 @@ class HomeController extends GetxController {
 
   final count = 0.obs;
   @override
-  void onInit() {
+  void onInit() async{
     super.onInit();
     GetTalksQtd();
   }
