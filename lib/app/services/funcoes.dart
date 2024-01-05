@@ -92,16 +92,9 @@ TimeOfDay parseTimeString(String timeString) {
 }
 
 DateTime parseTimeStringToDateTime(DateTime date, String timeString) {
-  List<String> parts = timeString.split(" ");
 
-  if (parts.length != 2) {
-    throw ArgumentError("A string não está no formato correto.");
-  }
 
-  String timePart = parts[0];
-  String amPmPart = parts[1];
-
-  List<String> timeParts = timePart.split(":");
+  List<String> timeParts = timeString.split(":");
 
   if (timeParts.length != 2) {
     throw ArgumentError("A string não está no formato correto.");
@@ -110,12 +103,7 @@ DateTime parseTimeStringToDateTime(DateTime date, String timeString) {
   int hours = int.parse(timeParts[0]);
   int minutes = int.parse(timeParts[1]);
 
-  if (amPmPart == "PM" && hours != 12) {
-    hours += 12;
-  } else if (amPmPart == "AM" && hours == 12) {
-    hours = 0;
-  }
-
+ 
   return DateTime(date.year, date.month, date.day, hours, minutes);
 }
 

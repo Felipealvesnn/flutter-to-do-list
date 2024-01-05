@@ -31,8 +31,6 @@ class CalendarPageView extends StatelessWidget {
     );
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     final String data = UtilsServices.formatDateTimeMesAno(DateTime.now());
@@ -65,7 +63,6 @@ class CalendarPageView extends StatelessWidget {
                         //botao de adicionar tarefa
                         Container(
                           height: 40.0,
-                          width: 130,
                           decoration: BoxDecoration(
                             color: LightColors.kGreen,
                             borderRadius: BorderRadius.circular(30),
@@ -78,9 +75,12 @@ class CalendarPageView extends StatelessWidget {
                               child: Text(
                                 'Add Tarefa',
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 16),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 16,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ),
@@ -126,7 +126,7 @@ class CalendarPageView extends StatelessWidget {
                           todayHighlightColor: Colors.red,
                           cellBorderColor: Colors.blue,
                           onTap: (CalendarTapDetails details) {
-                              FunceCalendar.calendarTapped(details, context);
+                            FunceCalendar.calendarTapped(details, context);
                           },
 
                           //firstDayOfWeek: 1, // Monday

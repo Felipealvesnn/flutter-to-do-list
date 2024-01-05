@@ -72,7 +72,7 @@ class RepositoryTalks {
       return _databaseInstance;
     } else {
       _databaseInstance = DbUtil();
-      await _databaseInstance.openDatabase();
+      
       return _databaseInstance;
     }
   }
