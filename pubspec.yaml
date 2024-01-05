@@ -5,8 +5,7 @@ description: A new Flutter project.
 environment: 
   sdk: '>=3.1.0 <4.0.0'
 
-dependencies: 
-  sqflite_ffi_test.dart:
+dependencies:
   cupertino_icons: ^1.0.2
   percent_indicator: ^4.2.3
   get: 4.6.6
