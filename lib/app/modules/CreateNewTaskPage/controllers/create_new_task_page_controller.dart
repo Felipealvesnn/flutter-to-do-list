@@ -31,19 +31,19 @@ class CreateNewTaskPageController extends GetxController {
   }
 
   Future<void> GetTalks() async {
-    listTalks.value = await RepositoryTalks.GetTalks();
+    listTalks.value = await RepositoryTalks.getTalks();
     print(listTalks);
   }
 
   Future<void> GetCategorys() async {
-    categoryList.value = await RepositoryTalks.GetCategorys();
+    categoryList.value = await RepositoryTalks.getCategories();
     print(categoryList.value);
   }
 
   Future<void> AddTalks() async {
     talksModel.categoriaId = categorySelecionada.value.id;
     try {
-      await RepositoryTalks.AddTask(talksModel);
+      await RepositoryTalks.addTask(talksModel);
      controllerCalendardd.listTalks.add(talksModel);
      homeController.GetTalksQtd();
 

@@ -4,8 +4,8 @@ import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/repository/repo
 
 class RepositoryHome {
   static Future<List<CategoryQtdTalks>> GetTalksQtd() async {
-    final listTalks = await RepositoryTalks.GetTalks();
-    final categoryList = await RepositoryTalks.GetCategorys();
+    final listTalks = await RepositoryTalks.getTalks();
+    final categoryList = await RepositoryTalks.getCategories();
     List<CategoryQtdTalks> categoryQtdTalksList = [];
 
     // Calcular o número total de talks em todas as categorias.

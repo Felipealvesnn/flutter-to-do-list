@@ -19,7 +19,7 @@ class CalendarPageController extends GetxController {
  
 
   Future<void> GetTalks() async {
-    listTalks.value = await RepositoryTalks.GetTalks();
+    listTalks.value = await RepositoryTalks.getTalks();
   }
 
   void increment() => count.value++;
