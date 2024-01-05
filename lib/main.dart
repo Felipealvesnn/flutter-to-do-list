@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_to_do_list/app/data/db.ultil.commum.dart';
 import 'package:flutter_to_do_list/app/modules/home/bindings/home_binding.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'package:flutter_to_do_list/app/routes/app_pages.dart';
 import 'package:flutter_to_do_list/app/theme/colors/light_colors.dart';
 
-void main() {
+void main() async {
+  await DatabaseHelper.openDatabase();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     systemNavigationBarColor: LightColors.kLightYellow, // navigation bar color
     statusBarColor: Color(0xffffb969), // status bar color

@@ -28,31 +28,29 @@ class TarefasController extends GetxController {
   }
 
   Future<void> GetCategorys() async {
-    categoryList.value = await RepositoryTalks.GetCategorys();
+    categoryList.value = await RepositoryTalks.getCategories();
   }
 
   Future<void> deleteTalk(TalksModel talksModel) async {
-    await RepositoryTalks.deteleTalk(talksModel);
+    await RepositoryTalks.deleteTalk(talksModel);
     atualizar();
   }
 
   Future<void> atualizar() async {
-    listtalks.value = await RepositoryTalks.GetTalks();
+    listtalks.value = await RepositoryTalks.getTalks();
     listtalksAll = listtalks.value;
   }
 
   Future<void> editarTal() async {
     talksModel.categoriaId = categorySelecionada.value.id;
     try {
-      await RepositoryTalks.AddTask(talksModel);
-      homeController.GetTalksQtd();
-
+      await RepositoryTalks.addTask(talksModel);
+    
       Get.snackbar(
         "Sucesso",
         "Os dados foram salvos com sucesso!",
         duration: const Duration(seconds: 3), // Define a duração da mensagem
       );
-      resetModeltal();
     } catch (e) {
       print(e);
     }
