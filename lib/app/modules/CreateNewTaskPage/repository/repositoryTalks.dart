@@ -37,7 +37,11 @@ class RepositoryTalks {
     if (mapList.isEmpty) {
       await addDefaultCategories();
       final updatedResult = await _databaseInstance.getData(NomeBanco.category);
-      mapList.addAll(updatedResult.map((e) => Category.fromMap(e)));
+      mapList.addAll(
+        updatedResult.map(
+          (e) => Category.fromMap(e),
+        ),
+      );
     }
 
     return mapList;

@@ -20,8 +20,6 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
-   
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -81,11 +79,12 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
                                         Validator: nameValidator),
                                   ),
                                   GestureDetector(
-                                      onTap: () {
-                                        openCalendar(context,
-                                            controller.controllerCalendar);
-                                      },
-                                      child: HomeView.calendarIcon()),
+                                    onTap: () {
+                                      openCalendar(context,
+                                          controller.controllerCalendar);
+                                    },
+                                    child: HomeView.calendarIcon(),
+                                  ),
                                 ],
                               ),
                             )
@@ -109,7 +108,8 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
                                   controller: controller.controllerStart.value,
                                   onSaved: (p0) {
                                     controller.talksModel.StartTime =
-                                        parseTimeStringToDateTime(controller.talksModel.date!, p0!);
+                                        parseTimeStringToDateTime(
+                                            controller.talksModel.date!, p0!);
                                   },
                                   label: 'Start Time',
                                   icon: controller
@@ -133,7 +133,8 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
                                   controller: controller.controllerEnd.value,
                                   onSaved: (p0) {
                                     controller.talksModel.EndTime =
-                                        parseTimeStringToDateTime(controller.talksModel.date!,p0!);
+                                        parseTimeStringToDateTime(
+                                            controller.talksModel.date!, p0!);
                                   },
                                   label: 'End Time',
                                   icon: buildDownwardIcon(context,

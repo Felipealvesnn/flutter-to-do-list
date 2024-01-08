@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_to_do_list/app/modules/home/components/cabecalho.dart';
 import 'package:flutter_to_do_list/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter_to_do_list/app/routes/app_pages.dart';
 import 'package:flutter_to_do_list/app/theme/colors/light_colors.dart';
@@ -41,7 +42,9 @@ class HomeView extends GetView<HomeController> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: LightColors.kLightYellow,
-      drawer: Drawer(
+      drawer:
+          // Drawer
+          Drawer(
         // Conteúdo do Drawer aqui
         child: ListView(
           padding: EdgeInsets.zero,
@@ -75,76 +78,7 @@ class HomeView extends GetView<HomeController> {
               builder: (context) => TopContainer(
                 height: 200,
                 width: width,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          IconButton(
-                            onPressed: () {
-                              Scaffold.of(context)
-                                  .openDrawer(); // Abre o Drawer
-                            },
-                            icon: const Icon(Icons.menu, size: 25.0),
-                            color: LightColors.kDarkBlue, // Use a cor desejada
-                          ),
-                          const Icon(Icons.search,
-                              color: LightColors.kDarkBlue, size: 25.0),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 0, vertical: 0.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            CircularPercentIndicator(
-                              radius: 60.0,
-                              lineWidth: 5.0,
-                              animation: true,
-                              percent: 0.75,
-                              circularStrokeCap: CircularStrokeCap.round,
-                              progressColor: LightColors.kRed,
-                              backgroundColor: LightColors.kDarkYellow,
-                              center: const CircleAvatar(
-                                backgroundColor: LightColors.kBlue,
-                                radius: 50.0,
-                                backgroundImage: NetworkImage(
-                                  'https://avatars.githubusercontent.com/u/88728350?s=400&u=3f1fb1f47fc18e90605ebc54b2ecddf07e528e12&v=4', // Substitua 'URL_DA_IMAGEM' pela URL da imagem da web
-                                ),
-                              ),
-                            ),
-                            const Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  Text(
-                                    'Felipe Alves',
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      fontSize: 22.0,
-                                      color: LightColors.kDarkBlue,
-                                      fontWeight: FontWeight.w800,
-                                    ),
-                                  ),
-                                  Text(
-                                    'App Developer',
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      fontSize: 16.0,
-                                      color: Colors.black45,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ]),
+                child: const CabecalhoHome(),
               ),
             ),
             Expanded(
@@ -172,7 +106,8 @@ class HomeView extends GetView<HomeController> {
                           ),
                           Obx(
                             () => SizedBox(
-                              height:  120, //controller.listCategoryQtdTalks.length * 59,
+                              height:
+                                  190, //controller.listCategoryQtdTalks.length * 59,
                               child: ListView.separated(
                                 // physics: const NeverScrollableScrollPhysics(),
                                 itemCount:
@@ -206,14 +141,16 @@ class HomeView extends GetView<HomeController> {
                             const SizedBox(height: 5.0),
                             SizedBox(
                               height: controller.listCategoryQtdTalks.length *
-                                  (150),
+                                  (200),
                               child: Obx(
                                 () => Visibility(
                                   visible: controller
-                                          .listCategoryQtdTalks.isNotEmpty,
-                                  replacement: const CircularProgressIndicator(),
+                                      .listCategoryQtdTalks.isNotEmpty,
+                                  replacement:
+                                      const CircularProgressIndicator(),
                                   child: GridView.builder(
-                                    physics: const NeverScrollableScrollPhysics(),
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
                                     gridDelegate:
                                         const SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
@@ -228,7 +165,8 @@ class HomeView extends GetView<HomeController> {
                                       return ActiveProjectsCard(
                                         cardColor: LightColors.getRandomColor(),
                                         loadingPercent: controller
-                                            .listCategoryQtdTalks[index].porcentagem,
+                                            .listCategoryQtdTalks[index]
+                                            .porcentagem,
                                         title: controller
                                             .listCategoryQtdTalks[index].nome,
                                         subtitle:
@@ -236,7 +174,6 @@ class HomeView extends GetView<HomeController> {
                                       );
                                     },
                                   ),
-                               
                                 ),
                               ),
                             ),
