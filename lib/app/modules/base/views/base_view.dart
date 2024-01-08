@@ -8,17 +8,18 @@ import '../controllers/base_controller.dart';
 
 class BaseView extends GetView<BaseController> {
   BaseView({Key? key}) : super(key: key);
+  final listWidgets = [
+    HomeView(),
+    TarefasView(),
+  ];
   final navigationController = Get.find<BaseController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-        physics: const NeverScrollableScrollPhysics(),
+        //physics:  const NeverScrollableScrollPhysics(),
         controller: navigationController.pageController,
-        children: [
-          HomeView(),
-           TarefasView(),
-        ],
+        children: listWidgets,
       ),
       bottomNavigationBar: Obx(
         () => NavigationBar(
