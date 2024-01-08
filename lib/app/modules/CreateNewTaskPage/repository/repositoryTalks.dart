@@ -11,7 +11,10 @@ class RepositoryTalks {
   static late DatabaseInstanceProvider _databaseInstance;
   static Future<void> addTask(TalksModel talksModel) async {
     try {
-      await _databaseInstance.insert(NomeBanco.talks, talksModel.toMap());
+      await _databaseInstance.insert(
+        NomeBanco.talks,
+        talksModel.toMap(),
+      );
     } catch (e) {
       print(e);
     }
@@ -72,7 +75,7 @@ class RepositoryTalks {
       return _databaseInstance;
     } else {
       _databaseInstance = DbUtil();
-      
+
       return _databaseInstance;
     }
   }
