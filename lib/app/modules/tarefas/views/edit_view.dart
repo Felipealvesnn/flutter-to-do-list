@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_to_do_list/app/Constants/validators.dart';
 import 'package:flutter_to_do_list/app/models/talks.dart';
+import 'package:flutter_to_do_list/app/modules/home/components/itens.dart';
 import 'package:flutter_to_do_list/app/modules/home/views/home_view.dart';
 import 'package:flutter_to_do_list/app/modules/tarefas/controllers/tarefas_controller.dart';
 import 'package:flutter_to_do_list/app/services/funcoes.dart';
@@ -90,7 +91,7 @@ class EditTaskPageView extends GetView<TarefasController> {
                                         openCalendar(context,
                                             controller.controllerCalendar);
                                       },
-                                      child: HomeView.calendarIcon()),
+                                      child: calendarIcon()),
                                 ],
                               ),
                             )

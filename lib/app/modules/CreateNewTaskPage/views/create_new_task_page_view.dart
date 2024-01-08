@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_to_do_list/app/Constants/validators.dart';
 import 'package:flutter_to_do_list/app/modules/CreateNewTaskPage/controllers/create_new_task_page_controller.dart';
+import 'package:flutter_to_do_list/app/modules/home/components/itens.dart';
 import 'package:flutter_to_do_list/app/modules/home/views/home_view.dart';
 import 'package:flutter_to_do_list/app/services/funcoes.dart';
 import 'package:flutter_to_do_list/app/theme/colors/light_colors.dart';
@@ -83,7 +84,7 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
                                       openCalendar(context,
                                           controller.controllerCalendar);
                                     },
-                                    child: HomeView.calendarIcon(),
+                                    child: calendarIcon(),
                                   ),
                                 ],
                               ),
@@ -95,123 +96,132 @@ class CreateNewTaskPageView extends GetView<CreateNewTaskPageController> {
                   ),
                   //coitaina de time e descrição
                   Expanded(
-                      child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Obx(
-                              () => Expanded(
-                                child: MyTextField(
-                                  controller: controller.controllerStart.value,
-                                  onSaved: (p0) {
-                                    controller.talksModel.StartTime =
-                                        parseTimeStringToDateTime(
-                                            controller.talksModel.date!, p0!);
-                                  },
-                                  label: 'Start Time',
-                                  icon: controller
-                                          .controllerEnd.value.text.isNotEmpty
-                                      ? buildDownwardIcon(context,
-                                          model: controller.controllerStart,
-                                          horafinal: controller
-                                              .controllerEnd.value.text)
-                                      : buildDownwardIcon(
-                                          context,
-                                          model: controller.controllerStart,
-                                        ),
-                                  Validator: nameValidator,
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Obx(
+                                () => Expanded(
+                                  child: MyTextField(
+                                    controller:
+                                        controller.controllerStart.value,
+                                    onSaved: (p0) {
+                                      controller.talksModel.StartTime =
+                                          parseTimeStringToDateTime(
+                                              controller.talksModel.date!, p0!);
+                                    },
+                                    label: 'Start Time',
+                                    icon: controller
+                                            .controllerEnd.value.text.isNotEmpty
+                                        ? buildDownwardIcon(context,
+                                            model: controller.controllerStart,
+                                            horafinal: controller
+                                                .controllerEnd.value.text)
+                                        : buildDownwardIcon(
+                                            context,
+                                            model: controller.controllerStart,
+                                          ),
+                                    Validator: nameValidator,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 40),
-                            Obx(
-                              () => Expanded(
-                                child: MyTextField(
-                                  controller: controller.controllerEnd.value,
-                                  onSaved: (p0) {
-                                    controller.talksModel.EndTime =
-                                        parseTimeStringToDateTime(
-                                            controller.talksModel.date!, p0!);
-                                  },
-                                  label: 'End Time',
-                                  icon: buildDownwardIcon(context,
-                                      model: controller.controllerEnd,
-                                      horainicial: controller
-                                          .controllerStart.value.text),
-                                  Validator: nameValidator,
+                              const SizedBox(width: 40),
+                              Obx(
+                                () => Expanded(
+                                  child: MyTextField(
+                                    controller: controller.controllerEnd.value,
+                                    onSaved: (p0) {
+                                      controller.talksModel.EndTime =
+                                          parseTimeStringToDateTime(
+                                              controller.talksModel.date!, p0!);
+                                    },
+                                    label: 'End Time',
+                                    icon: buildDownwardIcon(context,
+                                        model: controller.controllerEnd,
+                                        horainicial: controller
+                                            .controllerStart.value.text),
+                                    Validator: nameValidator,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        MyTextField(
-                          onSaved: (p0) {
-                            controller.talksModel.description = p0;
-                          },
-                          Validator: nameValidator,
-                          label: 'Descricao',
-                          minLines: 3,
-                          maxLines: 3,
-                        ),
-                        const SizedBox(height: 20),
-                        Obx(() => Container(
-                              alignment: Alignment.topLeft,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  const Text(
-                                    'Categoria',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.black54,
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          MyTextField(
+                            onSaved: (p0) {
+                              controller.talksModel.description = p0;
+                            },
+                            Validator: nameValidator,
+                            label: 'Descricao',
+                            minLines: 3,
+                            maxLines: 3,
+                          ),
+                          const SizedBox(height: 20),
+                          Obx(() => Container(
+                                alignment: Alignment.topLeft,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    const Text(
+                                      'Categoria',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.black54,
+                                      ),
                                     ),
-                                  ),
-                                  Wrap(
-                                    crossAxisAlignment:
-                                        WrapCrossAlignment.start,
-                                    //direction: Axis.vertical,
-                                    alignment: WrapAlignment.start,
-                                    verticalDirection: VerticalDirection.down,
-                                    runSpacing: 0,
-                                    //textDirection: TextDirection.rtl,
-                                    spacing: 10.0,
-                                    children:
-                                        // Chip(
-                                        //   label: Text("SPORT APP"),
-                                        //   backgroundColor: LightColors.kRed,
-                                        //   labelStyle: TextStyle(color: Colors.white),
-                                        // ),
-                                        controller.categoryList.value.map((e) {
-                                      return GestureDetector(
-                                        onTap: () {
-                                          controller.categorySelecionada.value =
-                                              e;
-                                        },
-                                        child: Chip(
-                                          label: Text(e.nome!),
-                                          backgroundColor: controller
-                                                      .categorySelecionada
-                                                      .value
-                                                      .id ==
-                                                  e.id
-                                              ? LightColors.kRed
-                                              : null,
-                                          labelStyle: const TextStyle(
-                                              color: Colors.white),
-                                        ),
-                                      );
-                                    }).toList(),
-                                  ),
-                                ],
-                              ),
-                            ))
-                      ],
+                                    Wrap(
+                                      crossAxisAlignment:
+                                          WrapCrossAlignment.start,
+                                      //direction: Axis.vertical,
+                                      alignment: WrapAlignment.start,
+                                      verticalDirection: VerticalDirection.down,
+                                      runSpacing: 0,
+                                      //textDirection: TextDirection.rtl,
+                                      spacing: 10.0,
+                                      children:
+                                          // Chip(
+                                          //   label: Text("SPORT APP"),
+                                          //   backgroundColor: LightColors.kRed,
+                                          //   labelStyle: TextStyle(color: Colors.white),
+                                          // ),
+                                          controller.categoryList.value
+                                              .map((e) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            controller
+                                                .categorySelecionada.value = e;
+                                          },
+                                          child: Chip(
+                                            label: Text(e.nome!),
+                                            backgroundColor: controller
+                                                        .categorySelecionada
+                                                        .value
+                                                        .id ==
+                                                    e.id
+                                                ? LightColors.kRed
+                                                : Colors.white,
+                                            labelStyle: TextStyle(
+                                                color: controller
+                                                            .categorySelecionada
+                                                            .value
+                                                            .id ==
+                                                        e.id
+                                                    ? Colors.white
+                                                    : LightColors.kRed),
+                                          ),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ],
+                                ),
+                              ))
+                        ],
+                      ),
                     ),
-                  )),
+                  ),
                   ElevatedButton(
                     onPressed: () {
                       FocusScope.of(context).unfocus();
